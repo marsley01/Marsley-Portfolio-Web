@@ -303,8 +303,8 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
     const y = e.clientY - rect.top;
     const centerX = rect.width / 2;
     const centerY = rect.height / 2;
-    const rotateX = ((y - centerY) / centerY) * -6;
-    const rotateY = ((x - centerX) / centerX) * 6;
+    const rotateX = ((y - centerY) / centerY) * -5;
+    const rotateY = ((x - centerX) / centerX) * 5;
     cardRef.current.style.transform = `perspective(1200px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.01,1.01,1.01)`;
     cardRef.current.style.transition = "transform 0.15s ease-out";
   };
@@ -328,28 +328,29 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
         ease: [0.16, 1, 0.3, 1],
       }}
       viewport={{ once: true, margin: "-30px" }}
-      className="group relative flex flex-col overflow-hidden rounded-3xl border border-white/10 bg-card/40 backdrop-blur-2xl shadow-xl shadow-black/5 transition-shadow duration-500 hover:shadow-black/10 dark:hover:shadow-black/40"
+      className="group relative flex flex-col overflow-hidden rounded-3xl border border-white/10 bg-white/[0.03] backdrop-blur-2xl shadow-2xl shadow-black/5 transition-all duration-500 hover:shadow-black/20 dark:bg-white/[0.03] dark:hover:shadow-black/40"
     >
-      <div className={`h-px w-full bg-gradient-to-r ${project.accentColor} opacity-80`} />
+      <div className={`h-px w-full bg-gradient-to-r ${project.accentColor} opacity-60`} />
 
-      <div className="flex flex-col gap-5 p-5 sm:flex-row sm:gap-6 sm:p-7">
-        <div className="relative aspect-[5/4] w-full shrink-0 overflow-hidden rounded-2xl sm:w-[200px] sm:aspect-auto">
-          <div className="absolute inset-0 bg-gradient-to-br from-black/10 to-transparent dark:from-black/20" />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/5 to-transparent dark:from-black/10" />
+      <div className="flex flex-col gap-5 p-6 sm:flex-row sm:gap-7 sm:p-7">
+        <div className="relative aspect-[5/4] w-full shrink-0 overflow-hidden rounded-2xl sm:w-[220px] sm:aspect-auto">
+          <div className="absolute inset-0 bg-gradient-to-br from-black/20 to-transparent dark:from-black/40" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent dark:from-black/20" />
+          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
           {project.image}
         </div>
 
         <div className="flex min-w-0 flex-1 flex-col gap-3">
           <div>
-            <h3 className="text-xl font-bold tracking-tight text-foreground">
+            <h3 className="text-lg font-bold tracking-tight text-foreground">
               {project.title}
             </h3>
-            <p className="mt-1 text-sm text-text-secondary">
+            <p className="mt-0.5 text-sm text-text-secondary">
               {project.subtitle}
             </p>
           </div>
 
-          <span className="inline-flex w-fit items-center gap-1.5 rounded-full border border-border/40 bg-card/60 px-3 py-1 text-xs font-semibold text-text-secondary backdrop-blur-md">
+          <span className="inline-flex w-fit items-center gap-1.5 rounded-lg border border-white/10 bg-white/[0.04] px-2.5 py-1 text-xs font-semibold text-text-secondary backdrop-blur-md">
             <svg width="10" height="10" viewBox="0 0 10 10" fill="currentColor" className="text-accent">
               <circle cx="5" cy="5" r="3" />
             </svg>
@@ -361,11 +362,11 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
           </p>
 
           <div className="mt-auto flex items-center justify-between gap-3">
-            <div className="flex items-center gap-2">
-              {project.techStack.slice(0, 3).map((tech) => (
+            <div className="flex items-center gap-1.5">
+              {project.techStack.slice(0, 4).map((tech) => (
                 <span
                   key={tech}
-                  className="flex h-7 w-7 items-center justify-center rounded-xl border border-border/30 bg-card/50 text-text-secondary backdrop-blur-sm"
+                  className="flex h-8 w-8 items-center justify-center rounded-xl border border-white/10 bg-white/[0.04] text-text-secondary backdrop-blur-sm transition-colors hover:border-white/20 hover:bg-white/[0.08]"
                   title={tech}
                 >
                   <TechIcon name={tech} />
@@ -375,7 +376,7 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
 
             <Link
               href={project.ctaHref}
-              className="inline-flex items-center gap-1.5 rounded-full border border-border/30 bg-accent/90 px-4 py-1.5 text-xs font-semibold text-white backdrop-blur-md transition-all hover:bg-accent active:scale-[0.97]"
+              className="inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-accent/90 px-4 py-2 text-xs font-semibold text-white backdrop-blur-md transition-all hover:bg-accent hover:border-accent/50 active:scale-[0.97]"
             >
               {project.ctaLabel}
               <svg width="12" height="12" viewBox="0 0 12 12" fill="none">

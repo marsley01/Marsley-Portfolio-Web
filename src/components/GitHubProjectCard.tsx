@@ -71,8 +71,8 @@ export default function GitHubProjectCard({ repo, index }: { repo: RepoData; ind
     const y = e.clientY - rect.top;
     const centerX = rect.width / 2;
     const centerY = rect.height / 2;
-    const rotateX = ((y - centerY) / centerY) * -6;
-    const rotateY = ((x - centerX) / centerX) * 6;
+    const rotateX = ((y - centerY) / centerY) * -5;
+    const rotateY = ((x - centerX) / centerX) * 5;
     cardRef.current.style.transform = `perspective(1200px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.01,1.01,1.01)`;
     cardRef.current.style.transition = "transform 0.15s ease-out";
   };
@@ -96,7 +96,7 @@ export default function GitHubProjectCard({ repo, index }: { repo: RepoData; ind
         ease: [0.16, 1, 0.3, 1],
       }}
       viewport={{ once: true, margin: "-30px" }}
-      className="group relative flex flex-col overflow-hidden rounded-3xl border border-white/10 bg-card/40 backdrop-blur-2xl shadow-xl shadow-black/5 transition-shadow duration-500 hover:shadow-black/10 dark:hover:shadow-black/40"
+      className="group relative flex flex-col overflow-hidden rounded-3xl border border-white/10 bg-white/[0.03] backdrop-blur-2xl shadow-2xl shadow-black/5 transition-all duration-500 hover:shadow-black/20 dark:hover:shadow-black/40"
     >
       <a
         href={repo.url}
@@ -106,7 +106,7 @@ export default function GitHubProjectCard({ repo, index }: { repo: RepoData; ind
       >
         <div className="flex items-start justify-between gap-4">
           <div className="min-w-0 flex-1">
-            <h3 className="text-xl font-bold tracking-tight text-foreground">
+            <h3 className="text-lg font-bold tracking-tight text-foreground">
               {RepoName(repo.name)}
             </h3>
             {repo.description && (
@@ -133,7 +133,7 @@ export default function GitHubProjectCard({ repo, index }: { repo: RepoData; ind
 
         <div className="mt-4 flex flex-wrap items-center gap-2">
           {repo.language && (
-            <span className="inline-flex items-center gap-1.5 rounded-md bg-card-secondary/50 px-2.5 py-1 text-xs font-medium text-text-secondary">
+            <span className="inline-flex items-center gap-1.5 rounded-lg border border-white/10 bg-white/[0.04] px-2.5 py-1 text-xs font-medium text-text-secondary backdrop-blur-sm">
               <span
                 className="h-2.5 w-2.5 rounded-full"
                 style={{ backgroundColor: getLangColor(repo.language) }}
@@ -144,18 +144,18 @@ export default function GitHubProjectCard({ repo, index }: { repo: RepoData; ind
           {repo.topics.slice(0, 3).map((topic) => (
             <span
               key={topic}
-              className="rounded-md bg-accent/10 px-2.5 py-1 text-xs font-medium text-accent"
+              className="rounded-lg border border-white/10 bg-white/[0.04] px-2.5 py-1 text-xs font-medium text-text-secondary backdrop-blur-sm"
             >
               {topic}
             </span>
           ))}
         </div>
 
-        <div className="mt-auto flex items-center justify-between pt-4">
+        <div className="mt-auto flex items-center justify-between pt-5">
           <span className="text-xs text-text-secondary/60">
             Updated {formatDate(repo.updated)}
           </span>
-          <span className="inline-flex items-center gap-1 text-xs font-semibold text-accent opacity-0 transition-opacity group-hover:opacity-100">
+          <span className="inline-flex items-center gap-1 text-xs font-semibold text-accent opacity-0 transition-opacity duration-300 group-hover:opacity-100">
             View Repo
             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
               <path d="M7 17L17 7M17 7H7M17 7V17" strokeLinecap="round" strokeLinejoin="round" />
