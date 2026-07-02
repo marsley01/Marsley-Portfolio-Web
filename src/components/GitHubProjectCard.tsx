@@ -71,16 +71,16 @@ export default function GitHubProjectCard({ repo, index }: { repo: RepoData; ind
     const y = e.clientY - rect.top;
     const centerX = rect.width / 2;
     const centerY = rect.height / 2;
-    const rotateX = ((y - centerY) / centerY) * -8;
-    const rotateY = ((x - centerX) / centerX) * 8;
-    cardRef.current.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
-    cardRef.current.style.transition = "transform 0.1s ease-out";
+    const rotateX = ((y - centerY) / centerY) * -6;
+    const rotateY = ((x - centerX) / centerX) * 6;
+    cardRef.current.style.transform = `perspective(1200px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.01,1.01,1.01)`;
+    cardRef.current.style.transition = "transform 0.15s ease-out";
   };
 
   const handleMouseLeave = () => {
     if (!cardRef.current) return;
-    cardRef.current.style.transform = "perspective(1000px) rotateX(0deg) rotateY(0deg)";
-    cardRef.current.style.transition = "transform 0.5s cubic-bezier(0.16, 1, 0.3, 1)";
+    cardRef.current.style.transform = "perspective(1200px) rotateX(0deg) rotateY(0deg) scale3d(1,1,1)";
+    cardRef.current.style.transition = "transform 0.6s cubic-bezier(0.16, 1, 0.3, 1)";
   };
 
   return (
@@ -88,16 +88,15 @@ export default function GitHubProjectCard({ repo, index }: { repo: RepoData; ind
       ref={cardRef}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
-      initial={{ opacity: 0, y: 40 }}
+      initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
       transition={{
-        duration: 0.6,
-        delay: index * 0.1,
+        duration: 0.7,
+        delay: index * 0.08,
         ease: [0.16, 1, 0.3, 1],
       }}
-      viewport={{ once: true, margin: "-50px" }}
-      whileHover={prefersReduced ? {} : { y: -6 }}
-      className="group flex flex-col overflow-hidden rounded-2xl border border-border/40 bg-card transition-shadow duration-300 hover:border-border/80 hover:shadow-lg hover:shadow-black/10"
+      viewport={{ once: true, margin: "-30px" }}
+      className="group relative flex flex-col overflow-hidden rounded-3xl border border-white/10 bg-card/40 backdrop-blur-2xl shadow-xl shadow-black/5 transition-shadow duration-500 hover:shadow-black/10 dark:hover:shadow-black/40"
     >
       <a
         href={repo.url}

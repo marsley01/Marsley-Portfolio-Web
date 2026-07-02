@@ -86,7 +86,7 @@ export default async function Projects() {
         <CornerAccents />
         <DotsGrid density="medium" className="opacity-20" />
         {repos.length > 0 ? (
-          <div className="grid gap-6 sm:grid-cols-2">
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {repos.map((repo, i) => (
               <GitHubProjectCard key={repo.id} repo={repo} index={i} />
             ))}

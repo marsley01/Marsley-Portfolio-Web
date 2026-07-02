@@ -189,7 +189,7 @@ export default function Home() {
           </p>
         </RevealOnScroll>
 
-        <div className="grid gap-6 sm:grid-cols-2">
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {featuredProjects.map((project, i) => (
             <ProjectCard key={project.title} project={project} index={i} />
           ))}

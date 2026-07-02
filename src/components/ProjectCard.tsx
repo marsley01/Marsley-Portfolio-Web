@@ -303,16 +303,16 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
     const y = e.clientY - rect.top;
     const centerX = rect.width / 2;
     const centerY = rect.height / 2;
-    const rotateX = ((y - centerY) / centerY) * -8;
-    const rotateY = ((x - centerX) / centerX) * 8;
-    cardRef.current.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
-    cardRef.current.style.transition = "transform 0.1s ease-out";
+    const rotateX = ((y - centerY) / centerY) * -6;
+    const rotateY = ((x - centerX) / centerX) * 6;
+    cardRef.current.style.transform = `perspective(1200px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.01,1.01,1.01)`;
+    cardRef.current.style.transition = "transform 0.15s ease-out";
   };
 
   const handleMouseLeave = () => {
     if (!cardRef.current) return;
-    cardRef.current.style.transform = "perspective(1000px) rotateX(0deg) rotateY(0deg)";
-    cardRef.current.style.transition = "transform 0.5s cubic-bezier(0.16, 1, 0.3, 1)";
+    cardRef.current.style.transform = "perspective(1200px) rotateX(0deg) rotateY(0deg) scale3d(1,1,1)";
+    cardRef.current.style.transition = "transform 0.6s cubic-bezier(0.16, 1, 0.3, 1)";
   };
 
   return (
@@ -320,22 +320,22 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
       ref={cardRef}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
-      initial={{ opacity: 0, y: 40 }}
+      initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
       transition={{
-        duration: 0.6,
-        delay: index * 0.1,
+        duration: 0.7,
+        delay: index * 0.08,
         ease: [0.16, 1, 0.3, 1],
       }}
-      viewport={{ once: true, margin: "-50px" }}
-      whileHover={prefersReduced ? {} : { y: -6 }}
-      className="group flex flex-col overflow-hidden rounded-2xl border border-border/40 bg-card transition-shadow duration-300 hover:border-border/80 hover:shadow-lg hover:shadow-black/10"
+      viewport={{ once: true, margin: "-30px" }}
+      className="group relative flex flex-col overflow-hidden rounded-3xl border border-white/10 bg-card/40 backdrop-blur-2xl shadow-xl shadow-black/5 transition-shadow duration-500 hover:shadow-black/10 dark:hover:shadow-black/40"
     >
-      <div className={`h-1.5 w-full bg-gradient-to-r shrink-0 ${project.accentColor}`} />
+      <div className={`h-px w-full bg-gradient-to-r ${project.accentColor} opacity-80`} />
 
-      <div className="flex flex-col gap-4 p-5 sm:flex-row sm:gap-5 sm:p-6">
-        <div className="relative aspect-[5/4] w-full shrink-0 overflow-hidden rounded-xl sm:w-[180px] sm:aspect-auto">
-          <div className="absolute inset-0 bg-gradient-to-br from-black/20 to-transparent" />
+      <div className="flex flex-col gap-5 p-5 sm:flex-row sm:gap-6 sm:p-7">
+        <div className="relative aspect-[5/4] w-full shrink-0 overflow-hidden rounded-2xl sm:w-[200px] sm:aspect-auto">
+          <div className="absolute inset-0 bg-gradient-to-br from-black/10 to-transparent dark:from-black/20" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/5 to-transparent dark:from-black/10" />
           {project.image}
         </div>
 
@@ -344,56 +344,45 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
             <h3 className="text-xl font-bold tracking-tight text-foreground">
               {project.title}
             </h3>
-            <p className="mt-0.5 text-sm text-text-secondary">
+            <p className="mt-1 text-sm text-text-secondary">
               {project.subtitle}
             </p>
           </div>
 
-          <span className="inline-flex w-fit items-center gap-1.5 rounded-md bg-card-secondary px-2.5 py-1 text-xs font-semibold text-text-secondary">
+          <span className="inline-flex w-fit items-center gap-1.5 rounded-full border border-border/40 bg-card/60 px-3 py-1 text-xs font-semibold text-text-secondary backdrop-blur-md">
             <svg width="10" height="10" viewBox="0 0 10 10" fill="currentColor" className="text-accent">
               <circle cx="5" cy="5" r="3" />
             </svg>
             {project.resultBadge}
           </span>
 
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={{
-              hidden: {},
-              visible: { transition: { staggerChildren: 0.06 } },
-            }}
-            className="flex items-center gap-2"
-          >
-            {project.techStack.map((tech) => (
-              <motion.span
-                key={tech}
-                variants={{
-                  hidden: { opacity: 0, scale: 0.8 },
-                  visible: {
-                    opacity: 1,
-                    scale: 1,
-                    transition: { type: "spring", stiffness: 100, damping: 15 },
-                  },
-                }}
-                className="flex h-7 w-7 items-center justify-center rounded-full border border-border/40 bg-card-secondary/50"
-                title={tech}
-              >
-                <TechIcon name={tech} />
-              </motion.span>
-            ))}
-          </motion.div>
+          <p className="text-sm leading-relaxed text-text-secondary line-clamp-2">
+            {project.description}
+          </p>
 
-          <Link
-            href={project.ctaHref}
-            className="mt-auto inline-flex w-fit items-center gap-1.5 rounded-full bg-accent px-4 py-1.5 text-xs font-semibold text-white transition-all hover:opacity-90 active:scale-[0.97]"
-          >
-            {project.ctaLabel}
-            <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
-              <path d="M4.5 2.5L8 6L4.5 9.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-            </svg>
-          </Link>
+          <div className="mt-auto flex items-center justify-between gap-3">
+            <div className="flex items-center gap-2">
+              {project.techStack.slice(0, 3).map((tech) => (
+                <span
+                  key={tech}
+                  className="flex h-7 w-7 items-center justify-center rounded-xl border border-border/30 bg-card/50 text-text-secondary backdrop-blur-sm"
+                  title={tech}
+                >
+                  <TechIcon name={tech} />
+                </span>
+              ))}
+            </div>
+
+            <Link
+              href={project.ctaHref}
+              className="inline-flex items-center gap-1.5 rounded-full border border-border/30 bg-accent/90 px-4 py-1.5 text-xs font-semibold text-white backdrop-blur-md transition-all hover:bg-accent active:scale-[0.97]"
+            >
+              {project.ctaLabel}
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                <path d="M4.5 2.5L8 6L4.5 9.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            </Link>
+          </div>
         </div>
       </div>
     </motion.div>
