@@ -14,7 +14,6 @@ import Magnetic from "@/components/Magnetic";
 import MouseGlowBlobs from "@/components/MouseGlowBlobs";
 import ServicesSection from "@/components/ServicesSection";
 
-
 const HeroScene = dynamic(() => import("@/components/three/HeroScene"), {
   ssr: false,
   loading: () => null,

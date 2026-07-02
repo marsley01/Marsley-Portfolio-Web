@@ -4,16 +4,12 @@ import { useRef, useMemo } from "react";
 import { useFrame, useThree } from "@react-three/fiber";
 import * as THREE from "three";
 
-const COLS = 90;
-const ROWS = 90;
-const SPACING = 0.27;
+const COLS = 70;
+const ROWS = 70;
+const SPACING = 0.28;
 const N = COLS * ROWS;
 
-interface Props {
-  isDark: boolean;
-}
-
-export default function GridParticles({ isDark }: Props) {
+export default function GridParticles() {
   const ref = useRef<THREE.Points>(null);
   const { camera, pointer } = useThree();
   const raycaster = useRef(new THREE.Raycaster());
@@ -53,9 +49,12 @@ export default function GridParticles({ isDark }: Props) {
       mz.current += (hit.current.z - mz.current) * 0.055;
     }
 
-    const peakR = isDark ? 0.275 : 0.145;
-    const peakG = isDark ? 0.443 : 0.388;
-    const peakB = isDark ? 0.890 : 0.921;
+    const valleyR = 0.102;
+    const valleyG = 0.0;
+    const valleyB = 0.376;
+    const peakR = 0.0;
+    const peakG = 0.784;
+    const peakB = 0.588;
 
     for (let i = 0; i < N; i++) {
       const x = bx[i];
@@ -70,9 +69,9 @@ export default function GridParticles({ isDark }: Props) {
       const dz = z - mz.current;
       const d2 = dx * dx + dz * dz;
       let ripple = 0;
-      if (d2 < 72) {
+      if (d2 < 64) {
         const d = Math.sqrt(d2);
-        ripple = (1 - d / 8.5) * Math.sin(d * 2.6 - elapsed * 7) * 1.1;
+        ripple = (1 - d / 8) * Math.sin(d * 2.5 - elapsed * 7) * 1.0;
       }
 
       const y = w1 + w2 + w3 + w4 + ripple;
@@ -81,9 +80,9 @@ export default function GridParticles({ isDark }: Props) {
       pos[i * 3 + 2] = z;
 
       const t = Math.max(0, Math.min(1, (y + 1.1) / 2.0));
-      col[i * 3] = (1 - t) * 0.88 + t * peakR;
-      col[i * 3 + 1] = (1 - t) * 0.92 + t * peakG;
-      col[i * 3 + 2] = (1 - t) * 0.96 + t * peakB;
+      col[i * 3] = (1 - t) * valleyR + t * peakR;
+      col[i * 3 + 1] = (1 - t) * valleyG + t * peakG;
+      col[i * 3 + 2] = (1 - t) * valleyB + t * peakB;
     }
 
     const posAttr = pts.geometry.attributes.position as THREE.BufferAttribute;
@@ -99,7 +98,7 @@ export default function GridParticles({ isDark }: Props) {
         <bufferAttribute attach="attributes-color" args={[colors, 3]} />
       </bufferGeometry>
       <pointsMaterial
-        size={0.065}
+        size={0.06}
         vertexColors
         transparent
         opacity={0.9}
