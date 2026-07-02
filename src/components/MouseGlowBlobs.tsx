@@ -56,16 +56,16 @@ export default function MouseGlowBlobs() {
     <div className="pointer-events-none fixed inset-0 z-[1] overflow-hidden">
       <div
         ref={blob1}
-        className="absolute -top-32 -left-32 h-[600px] w-[600px] rounded-full will-change-transform"
+        className="absolute -top-32 -left-32 h-[600px] w-[600px] rounded-full will-change-transform opacity-60"
         style={{
-          background: "radial-gradient(circle, rgba(59,130,246,0.2) 0%, transparent 70%)",
+          background: "radial-gradient(circle, rgba(0,113,227,0.12) 0%, transparent 70%)",
         }}
       />
       <div
         ref={blob2}
-        className="absolute -bottom-32 -right-32 h-[500px] w-[500px] rounded-full will-change-transform"
+        className="absolute -bottom-32 -right-32 h-[500px] w-[500px] rounded-full will-change-transform opacity-60"
         style={{
-          background: "radial-gradient(circle, rgba(168,85,247,0.15) 0%, transparent 70%)",
+          background: "radial-gradient(circle, rgba(0,113,227,0.08) 0%, transparent 70%)",
         }}
       />
     </div>

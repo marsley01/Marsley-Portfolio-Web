@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Section from "@/components/Section";
 import { DotsGrid, Crosses, Rings, GeometricShape, CornerAccents } from "@/components/VisualAnchors";
 import RevealOnScroll from "@/components/RevealOnScroll";
@@ -37,22 +37,32 @@ export default function Contact() {
     message: "",
   });
   const [submitted, setSubmitted] = useState(false);
+  const [error, setError] = useState("");
+  const [sending, setSending] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setError("");
+    setSending(true);
     const form = new FormData();
     form.append("name", formState.name);
     form.append("email", formState.email);
     form.append("message", formState.message);
 
-    await fetch("https://formspree.io/f/mgvlbzyp", {
-      method: "POST",
-      body: form,
-      headers: { Accept: "application/json" },
-    });
-
-    setSubmitted(true);
-    setFormState({ name: "", email: "", message: "" });
+    try {
+      const res = await fetch("https://formspree.io/f/mgvlbzyp", {
+        method: "POST",
+        body: form,
+        headers: { Accept: "application/json" },
+      });
+      if (!res.ok) throw new Error("Failed to send. Please try again.");
+      setSubmitted(true);
+      setFormState({ name: "", email: "", message: "" });
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Something went wrong.");
+    } finally {
+      setSending(false);
+    }
   };
 
   return (
@@ -115,50 +125,66 @@ export default function Contact() {
             ) : (
               <form onSubmit={handleSubmit} className="mt-8 space-y-5">
                 <div>
+                  <label htmlFor="name" className="mb-1.5 block text-sm font-medium text-foreground">
+                    Your Name
+                  </label>
                   <input
+                    id="name"
                     type="text"
                     name="name"
-                    placeholder="Your Name"
+                    placeholder="John Doe"
                     value={formState.name}
                     onChange={(e) =>
                       setFormState({ ...formState, name: e.target.value })
                     }
                     required
-                    className="w-full rounded-xl border border-border/40 bg-card px-5 py-3.5 text-sm text-foreground outline-none transition-colors placeholder:text-text-secondary focus:border-accent"
+                    className="w-full rounded-xl border border-border/40 bg-card px-5 py-3.5 text-sm text-foreground outline-none transition-colors placeholder:text-text-secondary/60 focus:border-accent"
                   />
                 </div>
                 <div>
+                  <label htmlFor="email" className="mb-1.5 block text-sm font-medium text-foreground">
+                    Your Email
+                  </label>
                   <input
+                    id="email"
                     type="email"
                     name="email"
-                    placeholder="Your Email"
+                    placeholder="john@example.com"
                     value={formState.email}
                     onChange={(e) =>
                       setFormState({ ...formState, email: e.target.value })
                     }
                     required
-                    className="w-full rounded-xl border border-border/40 bg-card px-5 py-3.5 text-sm text-foreground outline-none transition-colors placeholder:text-text-secondary focus:border-accent"
+                    className="w-full rounded-xl border border-border/40 bg-card px-5 py-3.5 text-sm text-foreground outline-none transition-colors placeholder:text-text-secondary/60 focus:border-accent"
                   />
                 </div>
                 <div>
+                  <label htmlFor="message" className="mb-1.5 block text-sm font-medium text-foreground">
+                    Your Message
+                  </label>
                   <textarea
+                    id="message"
                     name="message"
-                    placeholder="Your Message"
+                    placeholder="Tell me about your project..."
                     rows={5}
                     value={formState.message}
                     onChange={(e) =>
                       setFormState({ ...formState, message: e.target.value })
                     }
                     required
-                    className="w-full resize-none rounded-xl border border-border/40 bg-card px-5 py-3.5 text-sm text-foreground outline-none transition-colors placeholder:text-text-secondary focus:border-accent"
+                    className="w-full resize-none rounded-xl border border-border/40 bg-card px-5 py-3.5 text-sm text-foreground outline-none transition-colors placeholder:text-text-secondary/60 focus:border-accent"
                   />
                 </div>
+                {error && (
+                  <p className="text-sm text-red-500">{error}</p>
+                )}
                 <Magnetic>
                   <button
                     type="submit"
-                    className="w-full rounded-full bg-accent px-6 py-3.5 text-sm font-semibold text-white transition-all hover:opacity-90 active:scale-[0.97]"
+                    disabled={sending}
+                    className="w-full rounded-full bg-accent px-6 py-3.5 text-sm font-semibold text-white transition-all hover:opacity-90 active:scale-[0.97] disabled:opacity-50"
                   >
-                    Send Message
+                    {sending ? "Sending..." : "Send Message"}
                   </button>
                 </Magnetic>
               </form>
@@ -205,6 +231,26 @@ export default function Contact() {
                 corner &mdash; it can answer questions about my projects and
                 how to reach me.
               </p>
+            </div>
+
+            <div className="mt-8 rounded-2xl border border-border/40 bg-card p-6">
+              <p className="mb-3 text-sm font-semibold text-foreground">LinkedIn</p>
+              <div
+                className="badge-base LI-profile-badge"
+                data-locale="en_US"
+                data-size="medium"
+                data-theme="dark"
+                data-type="VERTICAL"
+                data-vanity="marsley-anunda-840ab82b0"
+                data-version="v1"
+              >
+                <a
+                  className="badge-base__link LI-simple-link text-sm text-accent hover:underline"
+                  href="https://ke.linkedin.com/in/marsley-anunda-840ab82b0?trk=profile-badge"
+                >
+                  Marsley Anunda
+                </a>
+              </div>
             </div>
           </motion.div>
         </div>

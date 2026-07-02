@@ -1,20 +1,15 @@
 "use client";
 
-import { motion, useInView } from "framer-motion";
-import { useRef, useEffect, useState } from "react";
+import { motion, useScroll, useMotionValueEvent } from "framer-motion";
+import { useState } from "react";
 
 export default function BackToTop() {
-  const ref = useRef<HTMLDivElement>(null);
-  const isInView = useInView(ref, { once: false, amount: 0.5 });
+  const { scrollY } = useScroll();
   const [visible, setVisible] = useState(false);
 
-  useEffect(() => {
-    const onScroll = () => {
-      setVisible(window.scrollY > 400);
-    };
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
+  useMotionValueEvent(scrollY, "change", (latest) => {
+    setVisible(latest > 400);
+  });
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -24,13 +19,12 @@ export default function BackToTop() {
 
   return (
     <motion.div
-      ref={ref}
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: 20 }}
       transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
       onClick={scrollToTop}
-      className="fixed bottom-10 right-10 z-50 w-12 h-12 rounded-full bg-accent text-white flex items-center justify-center cursor-pointer shadow-lg shadow-accent/30 hover:scale-110 transition-transform"
+      className="fixed bottom-10 left-10 z-50 w-12 h-12 rounded-full bg-accent text-white flex items-center justify-center cursor-pointer shadow-lg shadow-accent/30 hover:scale-110 transition-transform"
       role="button"
       tabIndex={0}
       onKeyDown={(e) => e.key === "Enter" && scrollToTop()}

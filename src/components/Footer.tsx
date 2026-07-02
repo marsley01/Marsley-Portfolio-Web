@@ -8,7 +8,7 @@ export default function Footer() {
         <p className="text-sm text-text-secondary">
           Built with purpose by{" "}
           <a
-            href="https://marsley-mash.vercel.app"
+            href="https://github.com/marsley01"
             target="_blank"
             rel="noopener noreferrer"
             className="text-foreground underline underline-offset-2 hover:text-accent transition-colors"

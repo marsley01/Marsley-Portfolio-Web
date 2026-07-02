@@ -59,9 +59,8 @@ const icons: Record<string, React.ReactNode> = {
   ),
   Brain: (
     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M12 5c-3.5 0-6.5 2-6.5 4.5S8.5 14 12 14s6.5-2 6.5-4.5S15.5 5 12 5z" />
-      <path d="M12 5c-3.5 0-6.5 2-6.5 4.5S8.5 14 12 14s6.5-2 6.5-4.5S15.5 5 12 5z" />
-      <path d="M9 13h6M9 17h6M9 9h6" strokeWidth="2" />
+      <path d="M12 4a5 5 0 0 0-5 5c0 1.5.8 2.8 2 3.5V18a2 2 0 0 0 2 2h2a2 2 0 0 0 2-2v-5.5a4.5 4.5 0 0 0 2-3.5 5 5 0 0 0-5-5z" />
+      <path d="M9 9h6M9 13h6M9 17h6" strokeWidth="2" />
     </svg>
   ),
   Layout: (

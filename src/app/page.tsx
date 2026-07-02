@@ -66,7 +66,7 @@ export default function Home() {
             </span>
           </motion.div>
 
-          <motion.h1 className="mt-8 bg-gradient-to-r from-foreground via-foreground/90 to-text-secondary bg-clip-text text-5xl font-bold leading-tight tracking-tight text-transparent sm:text-7xl sm:leading-tight">
+          <motion.h1 className="mt-8 bg-gradient-to-b from-foreground to-foreground/70 bg-clip-text text-5xl font-bold leading-tight tracking-tight text-transparent sm:text-7xl sm:leading-tight">
             {["Marsley", "Mash"].map((word, i) => (
               <motion.span
                 key={word}
@@ -183,6 +183,17 @@ export default function Home() {
           {featuredProjects.map((project, i) => (
             <ProjectCard key={project.title} project={project} index={i} />
           ))}
+        </div>
+        <div className="mt-12 text-center">
+          <Link
+            href="/projects"
+            className="inline-flex items-center gap-1.5 rounded-full border border-border/40 bg-card px-6 py-3 text-sm font-semibold text-foreground transition-all hover:bg-foreground/5 active:scale-[0.97]"
+          >
+            View All Projects
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+              <path d="M4.5 2.5L8 6L4.5 9.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+          </Link>
         </div>
       </Section>
 

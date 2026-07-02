@@ -46,7 +46,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${inter.variable} dark h-full antialiased cursor-none`}
+      className={`${inter.variable} dark h-full antialiased`}
       suppressHydrationWarning
     >
       <body className="min-h-full bg-background font-sans text-foreground transition-colors duration-300">
@@ -60,10 +60,10 @@ export default function RootLayout({
             </main>
             <Footer />
             <ChatBot />
-            <CustomCursor />
             <BackToTop />
           </SmoothScrollProvider>
         </ThemeProvider>
+        <script src="https://platform.linkedin.com/badges/js/profile.js" async defer type="text/javascript"></script>
       </body>
     </html>
   );
