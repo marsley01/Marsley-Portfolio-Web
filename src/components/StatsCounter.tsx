@@ -1,13 +1,17 @@
 "use client";
 
-import { motion, useInView, useMotionValue, useTransform, animate, useReducedMotion } from "framer-motion";
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useState } from "react";
+import { useInView, useReducedMotion } from "framer-motion";
 
 interface StatsCounterProps {
   target: number;
   label: string;
   suffix?: string;
   prefix?: string;
+}
+
+function easeOutQuart(t: number): number {
+  return 1 - Math.pow(1 - t, 4);
 }
 
 export default function StatsCounter({
@@ -19,42 +23,43 @@ export default function StatsCounter({
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, margin: "-50px" });
   const prefersReduced = useReducedMotion();
-  const motionValue = useMotionValue(0);
-  const rounded = useTransform(motionValue, (v) => Math.floor(v));
+  const [displayed, setDisplayed] = useState(0);
+  const animationRef = useRef<number>(0);
 
   useEffect(() => {
     if (!isInView) return;
     if (prefersReduced) {
-      motionValue.set(target);
+      setDisplayed(target);
       return;
     }
-    const controls = animate(motionValue, target, {
-      duration: 1.8,
-      ease: "easeOut",
-    });
-    return () => controls.stop();
-  }, [isInView, target, prefersReduced, motionValue]);
+    let start: number | null = null;
+    const duration = 1800;
+
+    function step(timestamp: number) {
+      if (start === null) start = timestamp;
+      const elapsed = timestamp - start;
+      const progress = Math.min(elapsed / duration, 1);
+      const eased = easeOutQuart(progress);
+      setDisplayed(Math.floor(eased * target));
+      if (progress < 1) {
+        animationRef.current = requestAnimationFrame(step);
+      }
+    }
+
+    animationRef.current = requestAnimationFrame(step);
+    return () => cancelAnimationFrame(animationRef.current);
+  }, [isInView, target, prefersReduced]);
 
   return (
     <div ref={ref} className="text-center">
-      <motion.p
-        initial={{ opacity: 0, y: 20 }}
-        animate={isInView ? { opacity: 1, y: 0 } : {}}
-        transition={{ duration: prefersReduced ? 0 : 0.5, ease: [0.16, 1, 0.3, 1] }}
-        className="text-4xl font-bold tracking-tight text-foreground sm:text-5xl"
-      >
+      <p className="text-4xl font-bold tracking-tight text-foreground sm:text-5xl">
         {prefix}
-        <motion.span>{rounded}</motion.span>
+        <span>{displayed}</span>
         {suffix}
-      </motion.p>
-      <motion.p
-        initial={{ opacity: 0 }}
-        animate={isInView ? { opacity: 1 } : {}}
-        transition={{ duration: prefersReduced ? 0 : 0.5, delay: prefersReduced ? 0 : 0.3, ease: [0.16, 1, 0.3, 1] }}
-        className="mt-2 text-sm text-text-secondary"
-      >
+      </p>
+      <p className="mt-2 text-sm text-text-secondary">
         {label}
-      </motion.p>
+      </p>
     </div>
   );
 }

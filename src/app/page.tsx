@@ -13,7 +13,7 @@ import RevealOnScroll from "@/components/RevealOnScroll";
 import Magnetic from "@/components/Magnetic";
 import MouseGlowBlobs from "@/components/MouseGlowBlobs";
 import ServicesSection from "@/components/ServicesSection";
-import TestimonialsSection from "@/components/TestimonialsSection";
+
 
 const HeroScene = dynamic(() => import("@/components/three/HeroScene"), {
   ssr: false,
@@ -61,6 +61,8 @@ export default function Home() {
 
         <MouseGlowBlobs />
 
+        <div className="pointer-events-none absolute inset-0 z-[1]" style={{ background: "radial-gradient(ellipse 80% 70% at 50% 50%, transparent 30%, rgba(8,8,8,0.6) 100%)" }} />
+
         <div className="relative z-10 max-w-3xl text-center">
           <motion.div
             initial={prefersReduced ? {} : { opacity: 0, y: 40 }}
@@ -71,30 +73,17 @@ export default function Home() {
                 : { duration: 0.7, ease: [0.16, 1, 0.3, 1], delay: 0 }
             }
           >
-            <span className="inline-block rounded-full border border-border/40 bg-card/50 px-4 py-1.5 text-xs font-medium text-text-secondary backdrop-blur-xl">
-              Web Developer &middot; Software Developer &middot; Nairobi
+            <span className="inline-flex items-center gap-2 rounded-full border border-border/40 bg-card/50 px-4 py-1.5 text-xs font-medium text-text-secondary backdrop-blur-xl">
+              <span className="h-1.5 w-1.5 rounded-full bg-[#00C896] shadow-[0_0_6px_#00C896] animate-pulse-dot" />
+              Founder &amp; Builder &middot; Nairobi, Kenya
             </span>
           </motion.div>
 
           <motion.h1 className="mt-8 bg-gradient-to-b from-foreground to-foreground/70 bg-clip-text text-5xl font-bold leading-tight tracking-tight text-transparent sm:text-7xl sm:leading-tight">
-            {["Marsley", "Mash"].map((word, i) => (
-              <motion.span
-                key={word}
-                initial={prefersReduced ? {} : { y: 60, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                transition={
-                  prefersReduced
-                    ? { duration: 0 }
-                    : { delay: i * 0.12, type: "spring", stiffness: 80, damping: 20 }
-                }
-                className="inline-block"
-              >
-                {word}
-              </motion.span>
-            ))}
+            I build products that ship.
           </motion.h1>
 
-<motion.p
+          <motion.p
               initial={prefersReduced ? {} : { opacity: 0, y: 40 }}
               animate={{ opacity: 1, y: 0 }}
               transition={
@@ -104,10 +93,7 @@ export default function Home() {
               }
               className="mt-6 text-lg leading-relaxed text-text-secondary sm:text-xl"
             >
-              Building brands, platforms, and digital experiences that shape
-              tomorrow. Founder of{" "}
-              <span className="text-foreground">Cyzora</span>,{" "}
-              <span className="text-foreground">Edyfra</span> & more.
+              Founder running 5 active ventures from Nairobi &mdash; edtech, e-commerce, SaaS, and digital agency. I don&apos;t just design websites. I build businesses.
             </motion.p>
 
           <motion.div
@@ -217,10 +203,11 @@ export default function Home() {
           <p className="mt-4 text-text-secondary">
             A snapshot of the impact so far.
           </p>
-          <div className="mt-12 grid gap-10 sm:grid-cols-3">
-            <StatsCounter target={8} suffix="+" label="Projects Shipped" />
+          <div className="mt-12 grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
+            <StatsCounter target={12} suffix="+" label="Projects Shipped" />
             <StatsCounter target={3} suffix="+" label="Years Building" />
             <StatsCounter target={5} suffix="+" label="Products Live" />
+            <StatsCounter target={8} suffix="+" label="Clients Served" />
           </div>
         </RevealOnScroll>
       </Section>
@@ -282,8 +269,6 @@ export default function Home() {
       </Section>
 
       <ServicesSection />
-
-      <TestimonialsSection />
 
       <Section className="relative">
         <Rings className="top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" count={2} />

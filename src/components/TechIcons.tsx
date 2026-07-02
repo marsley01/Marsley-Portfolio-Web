@@ -309,8 +309,17 @@ export const techIcons: Record<string, ReactNode> = {
   ),
 };
 
+const techNameMap: Record<string, string> = {
+  NTS: "Next.js",
+  TS: "TypeScript",
+  NSQLTS: "Supabase",
+  NSQL: "PostgreSQL",
+  N: "Next.js",
+};
+
 export function TechIcon({ name, size = 18 }: { name: string; size?: number }) {
-  const icon = techIcons[name];
+  const resolved = techNameMap[name] || name;
+  const icon = techIcons[resolved];
   if (!icon) return null;
   return <span style={{ width: size, height: size, display: "inline-flex", alignItems: "center", justifyContent: "center" }}>{icon}</span>;
 }

@@ -7,11 +7,16 @@ export default function CustomCursor() {
   const cursorX = useMotionValue(-100);
   const cursorY = useMotionValue(-100);
   const [hovered, setHovered] = useState(false);
+  const [visible, setVisible] = useState(false);
 
   const springX = useSpring(cursorX, { stiffness: 300, damping: 28 });
   const springY = useSpring(cursorY, { stiffness: 300, damping: 28 });
 
   useEffect(() => {
+    const isTouch = window.matchMedia("(pointer: coarse)").matches;
+    if (isTouch) return;
+
+    setVisible(true);
     const moveCursor = (e: MouseEvent) => {
       cursorX.set(e.clientX);
       cursorY.set(e.clientY);
@@ -21,6 +26,7 @@ export default function CustomCursor() {
   }, [cursorX, cursorY]);
 
   useEffect(() => {
+    if (!visible) return;
     const handleMouseOver = (e: MouseEvent) => {
       const target = e.target as HTMLElement;
       if (
@@ -48,7 +54,9 @@ export default function CustomCursor() {
       document.removeEventListener("mouseover", handleMouseOver);
       document.removeEventListener("mouseout", handleMouseOut);
     };
-  }, []);
+  }, [visible]);
+
+  if (!visible) return null;
 
   return (
     <motion.div

@@ -15,7 +15,7 @@ export default function BackToTop() {
 
   const scrollToTop = () => {
     if (lenis) {
-      lenis.scrollTo(0, { duration: 1.2 });
+      lenis.scrollTo(0, { duration: 1 });
     } else {
       window.scrollTo({ top: 0, behavior: "smooth" });
     }

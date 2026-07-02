@@ -168,8 +168,8 @@ export const featuredProjects: ProjectData[] = [
     image: <ProjectPreviewCyzora />,
     resultBadge: "10+ websites delivered",
     techStack: ["Next.js", "TypeScript", "Tailwind CSS", "Git"],
-    ctaLabel: "Visit Site",
-    ctaHref: "/projects",
+    ctaLabel: "Coming Soon",
+    ctaHref: "#",
   },
   {
     title: "Edyfra",
@@ -179,8 +179,8 @@ export const featuredProjects: ProjectData[] = [
     image: <ProjectPreviewEdyfra />,
     resultBadge: "70+ active verified users",
     techStack: ["Next.js", "Node.js", "PostgreSQL", "TypeScript"],
-    ctaLabel: "View Case Study",
-    ctaHref: "/projects",
+    ctaLabel: "Visit Platform",
+    ctaHref: "https://edyfra-v2.vercel.app",
   },
   {
     title: "Trivo Kenya",
@@ -191,7 +191,7 @@ export const featuredProjects: ProjectData[] = [
     resultBadge: "300+ products listed",
     techStack: ["React", "Tailwind CSS", "Node.js", "Git"],
     ctaLabel: "Visit Store",
-    ctaHref: "/projects",
+    ctaHref: "https://trivokenya.store",
   },
   {
     title: "Belloria Beauty",
@@ -201,8 +201,8 @@ export const featuredProjects: ProjectData[] = [
     image: <ProjectPreviewBelloria />,
     resultBadge: "Beauty line showcased",
     techStack: ["React", "TypeScript", "Tailwind CSS", "Figma"],
-    ctaLabel: "View Site",
-    ctaHref: "/projects",
+    ctaLabel: "Visit Store",
+    ctaHref: "https://belloriabeauty.store",
   },
   {
     title: "Inshot AI",
@@ -320,8 +320,8 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
       ref={cardRef}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
-      initial={{ opacity: 0, y: 30 }}
-      whileInView={{ opacity: 1, y: 0 }}
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
       transition={{
         duration: 0.7,
         delay: index * 0.08,
@@ -374,15 +374,33 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
               ))}
             </div>
 
-            <Link
-              href={project.ctaHref}
-              className="inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-accent/90 px-4 py-2 text-xs font-semibold text-white backdrop-blur-md transition-all hover:bg-accent hover:border-accent/50 active:scale-[0.97]"
-            >
-              {project.ctaLabel}
-              <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
-                <path d="M4.5 2.5L8 6L4.5 9.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-              </svg>
-            </Link>
+            {project.ctaHref === "#" ? (
+              <span className="inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-white/[0.04] px-4 py-2 text-xs font-semibold text-text-secondary backdrop-blur-md cursor-not-allowed opacity-60">
+                {project.ctaLabel}
+              </span>
+            ) : project.ctaHref.startsWith("http") ? (
+              <a
+                href={project.ctaHref}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-accent/90 px-4 py-2 text-xs font-semibold text-white backdrop-blur-md transition-all hover:bg-accent hover:border-accent/50 active:scale-[0.97]"
+              >
+                {project.ctaLabel}
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                  <path d="M4.5 2.5L8 6L4.5 9.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </a>
+            ) : (
+              <Link
+                href={project.ctaHref}
+                className="inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-accent/90 px-4 py-2 text-xs font-semibold text-white backdrop-blur-md transition-all hover:bg-accent hover:border-accent/50 active:scale-[0.97]"
+              >
+                {project.ctaLabel}
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                  <path d="M4.5 2.5L8 6L4.5 9.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </Link>
+            )}
           </div>
         </div>
       </div>
