@@ -1,7 +1,6 @@
 "use client";
 
 import { useRef, useEffect, useState } from "react";
-import { useInView, useReducedMotion } from "framer-motion";
 
 interface StatsCounterProps {
   target: number;
@@ -21,17 +20,30 @@ export default function StatsCounter({
   prefix = "",
 }: StatsCounterProps) {
   const ref = useRef<HTMLDivElement>(null);
-  const isInView = useInView(ref, { once: true, margin: "-50px" });
-  const prefersReduced = useReducedMotion();
+  const [hasAnimated, setHasAnimated] = useState(false);
   const [displayed, setDisplayed] = useState(0);
   const animationRef = useRef<number>(0);
 
   useEffect(() => {
-    if (!isInView) return;
-    if (prefersReduced) {
-      setDisplayed(target);
-      return;
-    }
+    const el = ref.current;
+    if (!el) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && !hasAnimated) {
+          setHasAnimated(true);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.2 }
+    );
+
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, [hasAnimated]);
+
+  useEffect(() => {
+    if (!hasAnimated) return;
     let start: number | null = null;
     const duration = 1800;
 
@@ -48,7 +60,7 @@ export default function StatsCounter({
 
     animationRef.current = requestAnimationFrame(step);
     return () => cancelAnimationFrame(animationRef.current);
-  }, [isInView, target, prefersReduced]);
+  }, [hasAnimated, target]);
 
   return (
     <div ref={ref} className="text-center">

@@ -321,5 +321,5 @@ export function TechIcon({ name, size = 18 }: { name: string; size?: number }) {
   const resolved = techNameMap[name] || name;
   const icon = techIcons[resolved];
   if (!icon) return null;
-  return <span style={{ width: size, height: size, display: "inline-flex", alignItems: "center", justifyContent: "center" }}>{icon}</span>;
+  return <span style={{ width: size, height: size, display: "inline-flex", alignItems: "center", justifyContent: "center", overflow: "hidden" }}>{icon}</span>;
 }

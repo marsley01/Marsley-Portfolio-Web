@@ -79,7 +79,21 @@ export default function Home() {
           </motion.div>
 
           <motion.h1 className="mt-8 bg-gradient-to-b from-foreground to-foreground/70 bg-clip-text text-5xl font-bold leading-tight tracking-tight text-transparent sm:text-7xl sm:leading-tight">
-            I build products that ship.
+            {["Marsley", "Mash"].map((word, i) => (
+              <motion.span
+                key={word}
+                initial={prefersReduced ? {} : { y: 60, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={
+                  prefersReduced
+                    ? { duration: 0 }
+                    : { delay: i * 0.12, type: "spring", stiffness: 80, damping: 20 }
+                }
+                className="inline-block"
+              >
+                {word}
+              </motion.span>
+            ))}
           </motion.h1>
 
           <motion.p
