@@ -1,36 +1,69 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+👨‍💻 Mash Marsley | Personal Portfolio
 
-## Getting Started
+A modern, responsive personal portfolio built to showcase my full-stack development projects, technical skills, and software engineering journey.
 
-First, run the development server:
+Welcome to the repository for my personal developer portfolio. This platform serves as a digital resume and a central hub for my work, including major SaaS projects like Edyfra. It is designed with a focus on clean UI/UX, fast load times, and engaging 3D web elements.
 
-```bash
+🛠️ Tech Stack
+
+This portfolio is built using a modern frontend ecosystem:
+
+Framework: Next.js (App Router)
+
+Language: TypeScript
+
+Styling: Tailwind CSS
+
+3D Graphics: Three.js
+
+Deployment: Vercel
+
+✨ Features
+
+Project Showcase: Detailed breakdowns of my core projects, architecture decisions, and tech stacks.
+
+Interactive 3D Elements: Utilizing Three.js to create engaging, modern web experiences directly in the browser.
+
+Responsive Design: Fully optimized for mobile, tablet, and desktop viewing.
+
+Performance Focused: Utilizing Next.js image optimization and server components for maximum speed.
+
+🚀 Local Development
+
+If you'd like to explore the source code locally, follow these steps:
+
+1. Clone the repository
+
+git clone https://github.com/marsley01/Marsley-Portfolio-Web.git
+cd Marsley-Portfolio-Web
+
+
+2. Install dependencies
+
+npm install
+# or
+yarn install
+# or
+pnpm install
+
+
+3. Run the development server
+
 npm run dev
 # or
 yarn dev
 # or
 pnpm dev
-# or
-bun dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Open http://localhost:3000 in your browser to see the live local interface. You can begin exploring the layout logic starting from app/page.tsx.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+📫 Connect With Me
 
-## Learn More
+LinkedIn: Mash Marsley 
 
-To learn more about Next.js, take a look at the following resources:
+GitHub: @marsley01
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Email: mashmarsley@gmail.com
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Designed and developed by Mash Marsley in Nairobi, Kenya.
