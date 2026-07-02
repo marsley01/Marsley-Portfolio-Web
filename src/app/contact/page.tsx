@@ -19,6 +19,11 @@ const socials = [
     url: "https://github.com/marsley01",
   },
   {
+    name: "LinkedIn",
+    handle: "Marsley Anunda",
+    url: "https://ke.linkedin.com/in/marsley-anunda-840ab82b0",
+  },
+  {
     name: "Email",
     handle: "mashmarsley@gmail.com",
     url: "mailto:mashmarsley@gmail.com",
@@ -231,26 +236,6 @@ export default function Contact() {
                 corner &mdash; it can answer questions about my projects and
                 how to reach me.
               </p>
-            </div>
-
-            <div className="mt-8 rounded-2xl border border-border/40 bg-card p-6">
-              <p className="mb-3 text-sm font-semibold text-foreground">LinkedIn</p>
-              <div
-                className="badge-base LI-profile-badge"
-                data-locale="en_US"
-                data-size="medium"
-                data-theme="dark"
-                data-type="VERTICAL"
-                data-vanity="marsley-anunda-840ab82b0"
-                data-version="v1"
-              >
-                <a
-                  className="badge-base__link LI-simple-link text-sm text-accent hover:underline"
-                  href="https://ke.linkedin.com/in/marsley-anunda-840ab82b0?trk=profile-badge"
-                >
-                  Marsley Anunda
-                </a>
-              </div>
             </div>
           </motion.div>
         </div>

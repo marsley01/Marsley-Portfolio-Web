@@ -116,6 +116,19 @@ export default function Navigation() {
               {theme === "dark" ? <SunIcon /> : <MoonIcon />}
             </button>
             <Link
+              href="https://ke.linkedin.com/in/marsley-anunda-840ab82b0"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="rounded-full border border-border/30 bg-card/40 p-2.5 text-text-secondary transition-colors hover:text-foreground hover:bg-card/80"
+              aria-label="LinkedIn"
+            >
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+                <rect x="2" y="9" width="4" height="12" />
+                <circle cx="4" cy="4" r="2" />
+              </svg>
+            </Link>
+            <Link
               href="/contact"
               className="rounded-full bg-accent px-4 py-2 text-xs font-semibold text-white transition-opacity hover:opacity-90 active:scale-[0.98]"
             >

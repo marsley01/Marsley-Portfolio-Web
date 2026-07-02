@@ -2,8 +2,10 @@
 
 import { motion, useScroll, useMotionValueEvent } from "framer-motion";
 import { useState } from "react";
+import { useLenis } from "@/providers/SmoothScrollProvider";
 
 export default function BackToTop() {
+  const lenis = useLenis();
   const { scrollY } = useScroll();
   const [visible, setVisible] = useState(false);
 
@@ -12,7 +14,11 @@ export default function BackToTop() {
   });
 
   const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    if (lenis) {
+      lenis.scrollTo(0, { duration: 1.2 });
+    } else {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
   };
 
   if (!visible) return null;

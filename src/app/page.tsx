@@ -41,8 +41,18 @@ export default function Home() {
   return (
     <>
       <section className="relative flex min-h-[100dvh] flex-col items-center justify-center overflow-hidden px-6 bg-grid-pattern">
-        <motion.div style={{ opacity: canvasOpacity }} className="fixed inset-0 z-0">
+        <motion.div style={{ opacity: canvasOpacity }} className="absolute inset-0 z-0" data-lenis-prevent>
           <HeroScene />
+        </motion.div>
+
+        <motion.div
+          className="pointer-events-none absolute inset-0 z-0"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1.5 }}
+        >
+          <div className="absolute top-1/4 left-1/4 h-64 w-64 rounded-full bg-accent-start/10 blur-[120px]" />
+          <div className="absolute bottom-1/4 right-1/4 h-80 w-80 rounded-full bg-accent-end/10 blur-[140px]" />
         </motion.div>
 
         <DotsGrid density="sparse" className="opacity-50" />
