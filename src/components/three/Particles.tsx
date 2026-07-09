@@ -4,6 +4,17 @@ import { useMemo, useRef, type MutableRefObject } from "react";
 import { useFrame, useThree } from "@react-three/fiber";
 import * as THREE from "three";
 
+function seedRandom(seed: number): () => number {
+  let s = seed;
+  return () => {
+    s |= 0;
+    s = (s + 0x6d2b79f5) | 0;
+    let t = Math.imul(s ^ (s >>> 15), 1 | s);
+    t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+    return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+  };
+}
+
 interface ParticlesProps {
   count?: number;
   color?: string;
@@ -13,19 +24,22 @@ interface ParticlesProps {
 export default function Particles({ count = 200, color = "#0071e3", mouse }: ParticlesProps) {
   const mesh = useRef<THREE.Points>(null);
   const { viewport } = useThree();
+
   const positions = useMemo(() => {
     const pos = new Float32Array(count * 3);
+    const rng = seedRandom(42);
     for (let i = 0; i < count; i++) {
-      pos[i * 3] = (Math.random() - 0.5) * viewport.width * 3;
-      pos[i * 3 + 1] = (Math.random() - 0.5) * viewport.height * 3;
-      pos[i * 3 + 2] = (Math.random() - 0.5) * 6;
+      pos[i * 3] = (rng() - 0.5) * viewport.width * 3;
+      pos[i * 3 + 1] = (rng() - 0.5) * viewport.height * 3;
+      pos[i * 3 + 2] = (rng() - 0.5) * 6;
     }
     return pos;
   }, [count, viewport]);
 
   const speeds = useMemo(() => {
     const s = new Float32Array(count);
-    for (let i = 0; i < count; i++) s[i] = 0.2 + Math.random() * 0.5;
+    const rng = seedRandom(42);
+    for (let i = 0; i < count; i++) s[i] = 0.2 + rng() * 0.5;
     return s;
   }, [count]);
 

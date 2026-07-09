@@ -41,7 +41,7 @@ export default function TestimonialsSection() {
             Trusted by Founders
           </h2>
           <p className="mt-4 text-lg leading-relaxed text-text-secondary">
-            Real results from clients I've built with.
+            Real results from clients I&apos;ve built with.
           </p>
         </motion.div>
 

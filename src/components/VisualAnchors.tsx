@@ -10,8 +10,6 @@ export function DotsGrid({
   density?: "sparse" | "medium" | "dense";
 }) {
   const spacing = density === "dense" ? 40 : density === "medium" ? 60 : 80;
-  const rows = 8;
-  const cols = 10;
 
   return (
     <svg

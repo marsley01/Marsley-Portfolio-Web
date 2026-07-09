@@ -24,13 +24,11 @@ export default function ThemeProvider({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     const stored = localStorage.getItem("theme") as Theme | null;
-    if (stored) {
-      setTheme(stored);
-    } else {
-      const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-      setTheme(prefersDark ? "dark" : "light");
-    }
+    const initial = stored ?? (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+    /* eslint-disable react-hooks/set-state-in-effect */
+    setTheme(initial);
     setMounted(true);
+    /* eslint-enable react-hooks/set-state-in-effect */
   }, []);
 
   useEffect(() => {

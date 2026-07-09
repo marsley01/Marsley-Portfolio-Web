@@ -2,6 +2,20 @@ import { DotsGrid, Crosses, Rings, GeometricShape, CornerAccents } from "@/compo
 import Section from "@/components/Section";
 import GitHubProjectCard from "@/components/GitHubProjectCard";
 
+interface RepoRaw {
+  id: number;
+  name: string;
+  description: string | null;
+  html_url: string;
+  homepage: string | null;
+  language: string | null;
+  stargazers_count: number;
+  forks_count: number;
+  topics: string[];
+  updated_at: string;
+  fork: boolean;
+}
+
 interface RepoData {
   id: number;
   name: string;
@@ -30,10 +44,10 @@ async function getRepos(): Promise<RepoData[]> {
 
     if (!res.ok) return [];
 
-    const data = await res.json();
+    const data: RepoRaw[] = await res.json();
     return data
-      .filter((repo: any) => !repo.fork && repo.name !== "marsley01")
-      .map((repo: any) => ({
+      .filter((repo) => !repo.fork && repo.name !== "marsley01")
+      .map((repo) => ({
         id: repo.id,
         name: repo.name,
         description: repo.description,

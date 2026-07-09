@@ -7,7 +7,6 @@ import ChatBot from "@/components/ChatBot";
 import ThemeProvider from "@/components/ThemeProvider";
 import PageTransition from "@/components/PageTransition";
 import SmoothScrollProvider from "@/providers/SmoothScrollProvider";
-import CustomCursor from "@/components/CustomCursor";
 import FloatingSvgs from "@/components/FloatingSvgs";
 import BackToTop from "@/components/BackToTop";
 

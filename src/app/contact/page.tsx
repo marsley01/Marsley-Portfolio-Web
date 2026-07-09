@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Section from "@/components/Section";
 import { DotsGrid, Crosses, Rings, GeometricShape, CornerAccents } from "@/components/VisualAnchors";
 import RevealOnScroll from "@/components/RevealOnScroll";

@@ -24,16 +24,18 @@ function SceneContent() {
   const { scene, camera } = useThree();
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/immutability
     scene.fog = new THREE.FogExp2("#080808", 0.024);
-    return () => { scene.fog = null; };
-  }, [scene]);
-
-  useEffect(() => {
     camera.position.set(0, 12, 17);
-    (camera as THREE.PerspectiveCamera).fov = 50;
+    if (camera instanceof THREE.PerspectiveCamera) {
+      // eslint-disable-next-line react-hooks/immutability
+      camera.fov = 50;
+    }
     camera.updateProjectionMatrix();
     camera.lookAt(0, 0, -1);
-  }, [camera]);
+
+    return () => { scene.fog = null; };
+  }, [scene, camera]);
 
   return (
     <>

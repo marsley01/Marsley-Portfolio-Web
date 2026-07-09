@@ -16,13 +16,16 @@ export default function CustomCursor() {
     const isTouch = window.matchMedia("(pointer: coarse)").matches;
     if (isTouch) return;
 
-    setVisible(true);
     const moveCursor = (e: MouseEvent) => {
+      setVisible(true);
       cursorX.set(e.clientX);
       cursorY.set(e.clientY);
     };
     window.addEventListener("mousemove", moveCursor);
-    return () => window.removeEventListener("mousemove", moveCursor);
+    return () => {
+      window.removeEventListener("mousemove", moveCursor);
+      setVisible(false);
+    };
   }, [cursorX, cursorY]);
 
   useEffect(() => {

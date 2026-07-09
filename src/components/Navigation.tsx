@@ -3,7 +3,7 @@
 import { motion, AnimatePresence, useScroll, useMotionValueEvent } from "framer-motion";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState, useRef, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useTheme } from "./ThemeProvider";
 
 const links = [
@@ -53,8 +53,6 @@ export default function Navigation() {
     document.addEventListener("keydown", handleKey);
     return () => document.removeEventListener("keydown", handleKey);
   }, [mobileOpen]);
-
-  const closeMobile = () => setMobileOpen(false);
 
   return (
     <motion.header

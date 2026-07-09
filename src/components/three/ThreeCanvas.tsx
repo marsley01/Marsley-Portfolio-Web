@@ -2,7 +2,7 @@
 
 import { Canvas, type CanvasProps } from "@react-three/fiber";
 import { AdaptiveDpr, AdaptiveEvents } from "@react-three/drei";
-import { Suspense, useRef } from "react";
+import { Suspense } from "react";
 
 interface ThreeCanvasProps extends CanvasProps {
   children: React.ReactNode;
