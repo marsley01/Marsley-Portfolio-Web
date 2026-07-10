@@ -28,6 +28,36 @@ const skills = [
   "AI / LLM Integration",
   "UI/UX Design",
   "Databases (SQL / NoSQL)",
+"use client";
+
+import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
+import Link from "next/link";
+import dynamic from "next/dynamic";
+import Section from "@/components/Section";
+import StatsCounter from "@/components/StatsCounter";
+import TechMarquee from "@/components/TechMarquee";
+import { TechIcon } from "@/components/TechIcons";
+import { DotsGrid, Rings, Crosses, GeometricShape, CornerAccents, WavyLines } from "@/components/VisualAnchors";
+import ProjectCard, { featuredProjects } from "@/components/ProjectCard";
+import RevealOnScroll from "@/components/RevealOnScroll";
+import Magnetic from "@/components/Magnetic";
+import MouseGlowBlobs from "@/components/MouseGlowBlobs";
+import ServicesSection from "@/components/ServicesSection";
+
+const HeroScene = dynamic(() => import("@/components/three/HeroScene"), {
+  ssr: false,
+  loading: () => null,
+});
+
+const skills = [
+  "Next.js / React",
+  "TypeScript",
+  "Tailwind CSS",
+  "Node.js",
+  "Python",
+  "AI / LLM Integration",
+  "UI/UX Design",
+  "Databases (SQL / NoSQL)",
   "Git / GitHub",
 ];
 
@@ -36,11 +66,12 @@ export default function Home() {
 
   const { scrollYProgress } = useScroll();
   const canvasOpacity = useTransform(scrollYProgress, [0, 0.15], [1, 0]);
+  const canvasBlur = useTransform(scrollYProgress, [0, 0.15], ["blur(0px)", "blur(20px)"]);
 
   return (
     <>
       <section className="relative flex min-h-[100dvh] flex-col items-center justify-center overflow-hidden px-6 bg-grid-pattern">
-        <motion.div style={{ opacity: canvasOpacity }} className="absolute inset-0 z-0" data-lenis-prevent>
+        <motion.div style={{ opacity: canvasOpacity, filter: canvasBlur }} className="absolute inset-0 z-0" data-lenis-prevent>
           <HeroScene />
         </motion.div>
 
@@ -89,7 +120,7 @@ export default function Home() {
                     ? { duration: 0 }
                     : { delay: i * 0.12, type: "spring", stiffness: 80, damping: 20 }
                 }
-                className="inline-block"
+                className={i === 0 ? "inline-block mr-[0.3em]" : "inline-block"}
               >
                 {word}
               </motion.span>
@@ -106,7 +137,7 @@ export default function Home() {
               }
               className="mt-6 text-lg leading-relaxed text-text-secondary sm:text-xl"
             >
-              Founder running 5 active ventures from Nairobi &mdash; edtech, e-commerce, SaaS, and digital agency. I don&apos;t just design websites. I build businesses.
+              Founder running multiple ventures from Nairobi &mdash; edtech, fintech, e-commerce, and SaaS. I don&apos;t just build websites. I build businesses.
             </motion.p>
 
           <motion.div
@@ -134,15 +165,6 @@ export default function Home() {
               >
                 Get in Touch
               </Link>
-            </Magnetic>
-            <Magnetic>
-              <a
-                href="/cv.pdf"
-                download
-                className="rounded-full border border-border/40 px-6 py-3 text-sm font-semibold text-foreground transition-all hover:bg-foreground/5 active:scale-[0.97]"
-              >
-                Download CV
-              </a>
             </Magnetic>
           </motion.div>
         </div>
@@ -173,6 +195,14 @@ export default function Home() {
             />
           </motion.div>
         </motion.div>
+      </section>
+
+      <section className="relative pt-24 pb-8">
+        <div className="mx-auto max-w-3xl text-center px-6">
+          <p className="text-lg leading-relaxed text-text-secondary sm:text-xl">
+            I&apos;m Mash. I build products, run them, and figure it out as I go. No CS degree. No co-founder (mostly). Just someone who got tired of waiting for the right conditions and started shipping. My build layer is Cursor, Claude, and Antigravity &mdash; not because I can&apos;t code, but because leverage matters more than purity.
+          </p>
+        </div>
       </section>
 
       <Section id="featured" className="relative bg-card/30">
@@ -206,7 +236,7 @@ export default function Home() {
         </div>
       </Section>
 
-<Section className="relative bg-card/30">
+      <Section className="relative bg-card/30">
         <GeometricShape />
         <WavyLines className="top-0 right-0" />
         <RevealOnScroll className="text-center">
@@ -217,10 +247,10 @@ export default function Home() {
             A snapshot of the impact so far.
           </p>
           <div className="mt-12 grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
-            <StatsCounter target={12} suffix="+" label="Projects Shipped" />
+            <StatsCounter target={10} suffix="+" label="Projects Shipped" />
             <StatsCounter target={3} suffix="+" label="Years Building" />
-            <StatsCounter target={5} suffix="+" label="Products Live" />
-            <StatsCounter target={8} suffix="+" label="Clients Served" />
+            <StatsCounter target={6} suffix="+" label="Products Live" />
+            <StatsCounter target={20} suffix="+" label="Clients Served" />
           </div>
         </RevealOnScroll>
       </Section>
@@ -302,6 +332,25 @@ export default function Home() {
               Start a Conversation
             </Link>
           </Magnetic>
+
+          <div className="mt-8 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
+            <a
+              href="mailto:mashmarsley@gmail.com"
+              className="inline-flex items-center gap-2 rounded-full border border-border/40 bg-card px-6 py-2.5 text-sm font-medium text-foreground transition-colors hover:border-accent/50"
+            >
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+              mashmarsley@gmail.com
+            </a>
+            <a
+              href="https://wa.me/254XXXXXXXXX"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 rounded-full bg-[#25D366]/10 border border-[#25D366]/20 px-6 py-2.5 text-sm font-medium text-[#25D366] transition-colors hover:bg-[#25D366]/20"
+            >
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+              WhatsApp Me
+            </a>
+          </div>
         </RevealOnScroll>
       </Section>
     </>

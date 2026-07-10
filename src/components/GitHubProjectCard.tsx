@@ -2,6 +2,7 @@
 
 import { motion, useReducedMotion } from "framer-motion";
 import { useRef } from "react";
+import { techNameMap } from "./TechIcons";
 
 interface RepoData {
   id: number;
@@ -141,14 +142,17 @@ export default function GitHubProjectCard({ repo, index }: { repo: RepoData; ind
               {repo.language}
             </span>
           )}
-          {repo.topics.slice(0, 3).map((topic) => (
-            <span
-              key={topic}
-              className="rounded-lg border border-white/10 bg-white/[0.04] px-2.5 py-1 text-xs font-medium text-text-secondary backdrop-blur-sm"
-            >
-              {topic}
-            </span>
-          ))}
+          {repo.topics.slice(0, 3).map((topic) => {
+            const mappedName = techNameMap[topic.toUpperCase()] || topic;
+            return (
+              <span
+                key={topic}
+                className="rounded-lg border border-white/10 bg-white/[0.04] px-2.5 py-1 text-xs font-medium text-text-secondary backdrop-blur-sm"
+              >
+                {mappedName}
+              </span>
+            );
+          })}
         </div>
 
         <div className="mt-auto flex items-center justify-between pt-5">

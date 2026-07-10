@@ -5,7 +5,7 @@ import { useReducedMotion } from "framer-motion";
 import { useThree } from "@react-three/fiber";
 import * as THREE from "three";
 import ThreeCanvas from "./ThreeCanvas";
-import GridParticles from "./GridParticles";
+import CrazyParticles from "./CrazyParticles";
 
 function hasWebGL(): boolean {
   try {
@@ -39,7 +39,7 @@ function SceneContent() {
 
   return (
     <>
-      <GridParticles />
+      <CrazyParticles />
     </>
   );
 }

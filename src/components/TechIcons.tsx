@@ -307,9 +307,15 @@ export const techIcons: Record<string, ReactNode> = {
       />
     </svg>
   ),
+  Paystack: (
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+      <circle cx="12" cy="12" r="10" fill="#09A5DB" />
+      <text x="12" y="16" textAnchor="middle" fill="white" fontSize="8" fontWeight="bold" fontFamily="Arial">PS</text>
+    </svg>
+  ),
 };
 
-const techNameMap: Record<string, string> = {
+export const techNameMap: Record<string, string> = {
   NTS: "Next.js",
   TS: "TypeScript",
   NSQLTS: "Supabase",

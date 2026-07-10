@@ -9,6 +9,7 @@ import PageTransition from "@/components/PageTransition";
 import SmoothScrollProvider from "@/providers/SmoothScrollProvider";
 import FloatingSvgs from "@/components/FloatingSvgs";
 import BackToTop from "@/components/BackToTop";
+import CustomCursor from "@/components/CustomCursor";
 
 const inter = Inter({
   variable: "--font-geist-sans",
@@ -17,9 +18,10 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Marsley Mash — Web & Software Developer",
+  metadataBase: new URL("https://marsley-mash-site.vercel.app"),
+  title: "Marsley Mash — Founder & Builder",
   description:
-    "Marsley Mash is a web and software developer, founder of Cyzora, Edyfra, and more. Building the future, one project at a time.",
+    "Founder and builder running multiple products across edtech, fintech, e-commerce, and SaaS. I ship things people actually use.",
   keywords: [
     "Marsley Mash",
     "Cyzora",
@@ -29,12 +31,22 @@ export const metadata: Metadata = {
     "Kenya",
     "entrepreneur",
   ],
+  verification: {
+    google: "a4JpMV_bvCcW9WtWa3JtuhpDTSgzac17BFOMWgoL098",
+  },
   openGraph: {
     title: "Marsley Mash",
     description:
-      "Web & software developer. Founder of Cyzora, Edyfra & more.",
+      "Founder and builder running multiple products across edtech, fintech, e-commerce, and SaaS. I ship things people actually use.",
     type: "website",
+    url: "https://marsley-mash-site.vercel.app",
+    siteName: "Marsley Mash Portfolio",
   },
+  twitter: {
+    title: "Marsley Mash — Founder & Builder",
+    description: "Founder and builder running multiple products across edtech, fintech, e-commerce, and SaaS. I ship things people actually use.",
+    card: "summary_large_image",
+  }
 };
 
 export default function RootLayout({
@@ -60,6 +72,7 @@ export default function RootLayout({
             <Footer />
             <ChatBot />
             <BackToTop />
+            <CustomCursor />
           </SmoothScrollProvider>
         </ThemeProvider>
         <script src="https://platform.linkedin.com/badges/js/profile.js" async defer type="text/javascript"></script>

@@ -177,7 +177,7 @@ export default function Navigation() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2 }}
-            className="fixed inset-0 z-50 flex flex-col bg-background/98 backdrop-blur-2xl sm:hidden"
+            className="fixed inset-0 z-50 flex flex-col bg-background sm:hidden"
           >
             <div className="flex items-center justify-between border-b border-border/40 px-6 py-5">
               <span className="text-sm font-semibold text-foreground">Menu</span>
