@@ -7,7 +7,6 @@ import ChatBot from "@/components/ChatBot";
 import ThemeProvider from "@/components/ThemeProvider";
 import PageTransition from "@/components/PageTransition";
 import SmoothScrollProvider from "@/providers/SmoothScrollProvider";
-import FloatingSvgs from "@/components/FloatingSvgs";
 import BackToTop from "@/components/BackToTop";
 import CustomCursor from "@/components/CustomCursor";
 import HeroSceneBackground from "@/components/three/HeroSceneBackground";
@@ -69,7 +68,6 @@ export default function RootLayout({
         <ThemeProvider>
           <SmoothScrollProvider>
             <Navigation />
-            <FloatingSvgs />
             <main className="flex-1">
               <PageTransition>{children}</PageTransition>
             </main>
