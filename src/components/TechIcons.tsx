@@ -313,6 +313,23 @@ export const techIcons: Record<string, ReactNode> = {
       <text x="12" y="16" textAnchor="middle" fill="white" fontSize="8" fontWeight="bold" fontFamily="Arial">PS</text>
     </svg>
   ),
+  Go: (
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+      <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm3 14h-2v-4h-2v4H9V8h6v2h-4v2h4v4z" fill="#00ADD8"/>
+    </svg>
+  ),
+  "Daraja API": (
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+      <circle cx="12" cy="12" r="10" fill="#4CAF50"/>
+      <path d="M8 10h8v4H8z" fill="white"/>
+    </svg>
+  ),
+  "M-Pesa": (
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+      <rect x="2" y="4" width="20" height="16" rx="2" fill="#4CAF50"/>
+      <path d="M12 16L6 8h12l-6 8z" fill="white"/>
+    </svg>
+  ),
 };
 
 export const techNameMap: Record<string, string> = {
@@ -321,6 +338,9 @@ export const techNameMap: Record<string, string> = {
   NSQLTS: "Supabase",
   NSQL: "PostgreSQL",
   N: "Next.js",
+  Go: "Go",
+  DarajaAPI: "Daraja API",
+  MPesa: "M-Pesa",
 };
 
 export function TechIcon({ name, size = 18 }: { name: string; size?: number }) {

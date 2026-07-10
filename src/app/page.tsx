@@ -14,12 +14,6 @@ import Magnetic from "@/components/Magnetic";
 import MouseGlowBlobs from "@/components/MouseGlowBlobs";
 import ServicesSection from "@/components/ServicesSection";
 
-const HeroScene = dynamic(() => import("@/components/three/HeroScene"), {
-  ssr: false,
-
-  loading: () => null,
-});
-
 const skills = [
   "Next.js / React",
   "TypeScript",
@@ -42,9 +36,6 @@ export default function Home() {
   return (
     <>
       <section className="relative flex min-h-[100dvh] flex-col items-center justify-center overflow-hidden px-6 bg-grid-pattern">
-        <motion.div style={{ opacity: canvasOpacity, filter: canvasBlur }} className="absolute inset-0 z-0" data-lenis-prevent>
-          <HeroScene />
-        </motion.div>
 
         <motion.div
           className="pointer-events-none absolute inset-0 z-0"

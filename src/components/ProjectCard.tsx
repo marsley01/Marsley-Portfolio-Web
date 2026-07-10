@@ -288,8 +288,8 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
     >
       <div className={`h-px w-full bg-gradient-to-r ${project.accentColor} opacity-60`} />
 
-      <div className="flex flex-col gap-5 p-6 sm:flex-row sm:gap-7 sm:p-7">
-        <div className="relative aspect-[5/4] w-full shrink-0 overflow-hidden rounded-2xl sm:w-[220px] sm:aspect-auto">
+      <div className="flex flex-col gap-5 p-6 sm:gap-7 sm:p-7">
+        <div className="relative aspect-video w-full shrink-0 overflow-hidden rounded-2xl">
           <div className="absolute inset-0 bg-gradient-to-br from-black/20 to-transparent dark:from-black/40" />
           <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent dark:from-black/20" />
           <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
