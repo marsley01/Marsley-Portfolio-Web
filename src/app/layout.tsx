@@ -24,23 +24,45 @@ export const metadata: Metadata = {
     "Founder and builder running multiple products across edtech, fintech, e-commerce, and SaaS. I ship things people actually use.",
   keywords: [
     "Marsley Mash",
+    "Marsley Mash Nairobi",
     "Cyzora",
     "Edyfra",
-    "web developer",
-    "software developer",
-    "Kenya",
-    "entrepreneur",
+    "Mash Payments",
+    "KenyaLibrarySystems",
+    "Trivo Kenya",
+    "web developer Nairobi",
+    "software developer Kenya",
+    "tech entrepreneur Nairobi",
+    "SaaS founder Kenya",
+    "Nairobi startup builder",
   ],
+  authors: [{ name: "Marsley Mash", url: "https://marsley-mash-site.vercel.app" }],
+  creator: "Marsley Mash",
+  publisher: "Marsley Mash",
+  robots: {
+    index: true,
+    follow: true,
+    nocache: false,
+    googleBot: {
+      index: true,
+      follow: true,
+      noimageindex: false,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
   verification: {
     google: "a4JpMV_bvCcW9WtWa3JtuhpDTSgzac17BFOMWgoL098",
   },
   openGraph: {
-    title: "Marsley Mash",
+    title: "Marsley Mash — Founder & Builder",
     description:
       "Founder and builder running multiple products across edtech, fintech, e-commerce, and SaaS. I ship things people actually use.",
     type: "website",
     url: "https://marsley-mash-site.vercel.app",
     siteName: "Marsley Mash Portfolio",
+    locale: "en_US",
   },
   twitter: {
     title: "Marsley Mash — Founder & Builder",
@@ -57,10 +79,44 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${inter.variable} dark antialiased`}
+      className={`${inter.variable} dark antialiased bg-background`}
       suppressHydrationWarning
     >
-      <body className="bg-background font-sans text-foreground transition-colors duration-300">
+      <body className="bg-transparent font-sans text-foreground transition-colors duration-300">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Person",
+              "name": "Marsley Mash",
+              "url": "https://marsley-mash-site.vercel.app",
+              "jobTitle": "Founder & Builder",
+              "address": {
+                "@type": "PostalAddress",
+                "addressLocality": "Nairobi",
+                "addressCountry": "Kenya"
+              },
+              "sameAs": [
+                "https://github.com/marsley01",
+                "https://www.linkedin.com/in/marsleymash"
+              ],
+              "knowsAbout": [
+                "Software Engineering",
+                "Web Development",
+                "SaaS Development",
+                "EdTech",
+                "FinTech",
+                "E-commerce",
+                "Entrepreneurship"
+              ],
+              "worksFor": {
+                "@type": "Organization",
+                "name": "Cyzora"
+              }
+            })
+          }}
+        />
         <div className="grain-overlay" />
         <div className="pointer-events-none fixed inset-0 -z-10 opacity-60">
           <HeroSceneBackground />
