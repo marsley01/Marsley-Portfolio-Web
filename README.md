@@ -50,7 +50,7 @@ This codebase showcases the businesses and platforms I have built and scaled:
 
 This repository is **read-only** for the public. It serves as an open showcase of my coding style, architectural decisions, and design capabilities. The code is proprietary to my personal brand and is not intended for local deployment, cloning, or modification by third parties.
 
-*I don't just build websites. I build businesses.*
+*I build businesses.*
 
 ---
 
