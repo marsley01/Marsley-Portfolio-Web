@@ -23,6 +23,13 @@ export default function ThemeProvider({ children }: { children: ReactNode }) {
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
+    // Migrate old users who got auto-assigned "light" due to system preferences
+    const migrated = localStorage.getItem("theme_migrated_to_dark_v1");
+    if (!migrated) {
+      localStorage.setItem("theme", "dark");
+      localStorage.setItem("theme_migrated_to_dark_v1", "true");
+    }
+
     const stored = localStorage.getItem("theme") as Theme | null;
     const initial = stored ?? "dark";
     /* eslint-disable react-hooks/set-state-in-effect */
