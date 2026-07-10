@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef, useEffect } from "react";
-import { useInView, useMotionValue, useSpring, useTransform, motion } from "framer-motion";
+import { useInView, useMotionValue, useTransform, motion, animate } from "framer-motion";
 
 interface StatsCounterProps {
   target: number;
@@ -20,13 +20,13 @@ export default function StatsCounter({
   const isInView = useInView(ref, { once: true, amount: 0.2 });
   const count = useMotionValue(0);
   const rounded = useTransform(count, Math.round);
-  const spring = useSpring(count, { duration: 1500, bounce: 0 });
 
   useEffect(() => {
     if (isInView) {
-      spring.set(target);
+      const controls = animate(count, target, { duration: 1.5, ease: "easeOut" });
+      return controls.stop;
     }
-  }, [isInView, target, spring]);
+  }, [isInView, target, count]);
 
   return (
     <div ref={ref} className="text-center">
