@@ -16,9 +16,6 @@ function hasWebGL(): boolean {
   }
 }
 
-function isMobile(): boolean {
-  return "ontouchstart" in window || navigator.maxTouchPoints > 0;
-}
 
 function SceneContent() {
   const { scene, camera } = useThree();
@@ -48,7 +45,7 @@ export default function HeroScene() {
   const prefersReduced = useReducedMotion();
 
   if (prefersReduced) return null;
-  if (typeof window !== "undefined" && (!hasWebGL() || isMobile())) return null;
+  if (typeof window !== "undefined" && !hasWebGL()) return null;
 
   return (
     <ThreeCanvas

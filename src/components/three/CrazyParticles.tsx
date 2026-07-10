@@ -47,11 +47,11 @@ export default function CrazyParticles() {
       pos[i * 3 + 1] = finalY;
       pos[i * 3 + 2] = finalZ;
       
-      // Cyberpunk / Outrun colors
+      // Blue and White theme
       const r = Math.random();
-      if (r < 0.3) color.setHSL(0.55, 0.9, 0.6); // Cyan
-      else if (r < 0.7) color.setHSL(0.75, 0.9, 0.6); // Purple
-      else color.setHSL(0.95, 0.9, 0.6); // Pink
+      if (r < 0.4) color.setHSL(0.6, 0.9, 0.5); // Deep Blue
+      else if (r < 0.8) color.setHSL(0.55, 0.9, 0.6); // Ice Blue
+      else color.setHSL(0, 0, 1.0); // Pure White
       
       col[i * 3] = color.r;
       col[i * 3 + 1] = color.g;
