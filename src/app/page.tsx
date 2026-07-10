@@ -16,36 +16,7 @@ import ServicesSection from "@/components/ServicesSection";
 
 const HeroScene = dynamic(() => import("@/components/three/HeroScene"), {
   ssr: false,
-  loading: () => null,
-});
 
-const skills = [
-  "Next.js / React",
-  "TypeScript",
-  "Tailwind CSS",
-  "Node.js",
-  "Python",
-  "AI / LLM Integration",
-  "UI/UX Design",
-  "Databases (SQL / NoSQL)",
-"use client";
-
-import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
-import Link from "next/link";
-import dynamic from "next/dynamic";
-import Section from "@/components/Section";
-import StatsCounter from "@/components/StatsCounter";
-import TechMarquee from "@/components/TechMarquee";
-import { TechIcon } from "@/components/TechIcons";
-import { DotsGrid, Rings, Crosses, GeometricShape, CornerAccents, WavyLines } from "@/components/VisualAnchors";
-import ProjectCard, { featuredProjects } from "@/components/ProjectCard";
-import RevealOnScroll from "@/components/RevealOnScroll";
-import Magnetic from "@/components/Magnetic";
-import MouseGlowBlobs from "@/components/MouseGlowBlobs";
-import ServicesSection from "@/components/ServicesSection";
-
-const HeroScene = dynamic(() => import("@/components/three/HeroScene"), {
-  ssr: false,
   loading: () => null,
 });
 
