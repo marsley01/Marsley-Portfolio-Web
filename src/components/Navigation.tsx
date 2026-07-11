@@ -62,7 +62,7 @@ export default function Navigation() {
       className={`fixed top-0 left-0 right-0 z-50 backdrop-blur-md transition-all duration-300 border-b ${
         scrolled 
           ? "bg-background/90 border-border/40 py-3 shadow-sm" 
-          : "bg-background/40 border-transparent py-4"
+          : "bg-background/80 sm:bg-background/40 border-border/10 sm:border-transparent py-3 sm:py-4 shadow-sm sm:shadow-none"
       }`}
     >
       <div className="mx-auto max-w-7xl px-6 sm:px-8">

@@ -53,9 +53,11 @@ export default function Home() {
 
         <MouseGlowBlobs />
 
-        <div className="pointer-events-none absolute inset-0 z-[1]" style={{ background: "radial-gradient(ellipse 80% 70% at 50% 50%, transparent 30%, rgba(8,8,8,0.6) 100%)" }} />
+        <div className="pointer-events-none absolute inset-0 z-[1]" style={{ background: "radial-gradient(ellipse 80% 80% at 50% 50%, transparent 10%, rgba(0,0,0,0.7) 100%)" }} />
 
         <div className="relative z-10 max-w-3xl text-center">
+          <div className="pointer-events-none absolute left-1/2 top-1/2 -z-10 h-[400px] w-[80%] -translate-x-1/2 -translate-y-1/2 rounded-full bg-background/60 blur-[60px]" />
+          
           <motion.div
             initial={prefersReduced ? {} : { opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
@@ -71,7 +73,7 @@ export default function Home() {
             </span>
           </motion.div>
 
-          <motion.h1 className="mt-8 bg-gradient-to-b from-foreground to-foreground/70 bg-clip-text text-5xl font-bold leading-tight tracking-tight text-transparent sm:text-7xl sm:leading-tight">
+          <motion.h1 className="mt-8 bg-gradient-to-b from-foreground to-foreground/70 bg-clip-text text-5xl font-bold leading-tight tracking-tight text-transparent sm:text-7xl sm:leading-tight drop-shadow-md">
             {["Marsley", "Mash"].map((word, i) => (
               <motion.span
                 key={word}
@@ -97,7 +99,7 @@ export default function Home() {
                   ? { duration: 0 }
                   : { duration: 0.7, ease: [0.16, 1, 0.3, 1], delay: 0.54 }
               }
-              className="mt-6 text-lg leading-relaxed text-text-secondary sm:text-xl"
+              className="mt-6 text-lg leading-relaxed text-foreground/90 sm:text-xl drop-shadow-sm"
             >
               Founder running multiple ventures from Nairobi &mdash; edtech, fintech, e-commerce, and SaaS. I don&apos;t just build websites. I build businesses.
             </motion.p>

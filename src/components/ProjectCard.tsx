@@ -290,10 +290,25 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
 
       <div className="flex flex-col gap-5 p-6 sm:gap-7 sm:p-7">
         <div className="relative aspect-video w-full shrink-0 overflow-hidden rounded-2xl">
-          <div className="absolute inset-0 bg-gradient-to-br from-black/20 to-transparent dark:from-black/40" />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent dark:from-black/20" />
-          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
-          {project.image}
+          <div className="absolute inset-0 bg-gradient-to-br from-black/20 to-transparent dark:from-black/40 z-10 pointer-events-none" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent dark:from-black/20 z-10 pointer-events-none" />
+          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100 z-10 pointer-events-none" />
+          
+          {project.ctaHref && project.ctaHref.startsWith("http") ? (
+            /* eslint-disable-next-line @next/next/no-img-element */
+            <img 
+              src={`https://api.microlink.io/?url=${encodeURIComponent(project.ctaHref)}&screenshot=true&meta=false&embed=screenshot.url`}
+              alt={`${project.title} preview`}
+              className="h-full w-full object-cover opacity-90 transition-all duration-700 group-hover:scale-105 group-hover:opacity-100"
+              loading="lazy"
+              onError={(e) => {
+                // If microlink fails, hide the broken image so the background shows
+                e.currentTarget.style.display = 'none';
+              }}
+            />
+          ) : (
+            project.image
+          )}
         </div>
 
         <div className="flex min-w-0 flex-1 flex-col gap-3">

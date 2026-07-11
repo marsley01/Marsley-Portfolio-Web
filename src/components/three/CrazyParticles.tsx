@@ -4,13 +4,47 @@ import { useRef, useMemo } from "react";
 import { useFrame } from "@react-three/fiber";
 import * as THREE from "three";
 
+const vertexShader = `
+  uniform float uTime;
+  varying vec3 vColor;
+
+  void main() {
+    vColor = color;
+    vec3 pos = position;
+    
+    // Apply the same flowing sine wave movement on GPU
+    pos.x = position.x + sin(uTime + position.y * 0.3) * 1.5;
+    pos.y = position.y + cos(uTime + position.z * 0.3) * 1.5;
+    pos.z = position.z + sin(uTime + position.x * 0.3) * 1.5;
+    
+    vec4 mvPosition = modelViewMatrix * vec4(pos, 1.0);
+    gl_Position = projectionMatrix * mvPosition;
+    
+    // Size attenuation: scale size based on distance
+    gl_PointSize = 0.12 * 300.0 / -mvPosition.z;
+  }
+`;
+
+const fragmentShader = `
+  varying vec3 vColor;
+
+  void main() {
+    // Round particles
+    float dist = length(gl_PointCoord - vec2(0.5));
+    if (dist > 0.5) discard;
+    
+    // Soft edges
+    float alpha = smoothstep(0.5, 0.1, dist) * 0.8;
+    gl_FragColor = vec4(vColor, alpha);
+  }
+`;
+
 export default function CrazyParticles() {
   const ref = useRef<THREE.Points>(null);
   
   const count = 12000;
 
-  const { basePositions, positions, colors } = useMemo(() => {
-    const base = new Float32Array(count * 3);
+  const { positions, colors } = useMemo(() => {
     const pos = new Float32Array(count * 3);
     const col = new Float32Array(count * 3);
     
@@ -39,10 +73,6 @@ export default function CrazyParticles() {
       const finalY = baseY + ry;
       const finalZ = baseZ + rz;
       
-      base[i * 3] = finalX;
-      base[i * 3 + 1] = finalY;
-      base[i * 3 + 2] = finalZ;
-      
       pos[i * 3] = finalX;
       pos[i * 3 + 1] = finalY;
       pos[i * 3 + 2] = finalZ;
@@ -58,8 +88,12 @@ export default function CrazyParticles() {
       col[i * 3 + 2] = color.b;
     }
     
-    return { basePositions: base, positions: pos, colors: col };
+    return { positions: pos, colors: col };
   }, []);
+
+  const uniforms = useMemo(() => ({
+    uTime: { value: 0 }
+  }), []);
 
   useFrame((state) => {
     const time = state.clock.elapsedTime * 0.5;
@@ -68,22 +102,9 @@ export default function CrazyParticles() {
     ref.current.rotation.y = time * 0.2;
     ref.current.rotation.x = Math.sin(time * 0.1) * 0.15;
     
-    const posAttr = ref.current.geometry.attributes.position;
-    const pos = posAttr.array as Float32Array;
-    
-    for (let i = 0; i < count; i++) {
-      const i3 = i * 3;
-      const bx = basePositions[i3];
-      const by = basePositions[i3 + 1];
-      const bz = basePositions[i3 + 2];
-      
-      // Crazy flowing sine waves math
-      pos[i3] = bx + Math.sin(time + by * 0.3) * 1.5;
-      pos[i3 + 1] = by + Math.cos(time + bz * 0.3) * 1.5;
-      pos[i3 + 2] = bz + Math.sin(time + bx * 0.3) * 1.5;
+    if (ref.current.material instanceof THREE.ShaderMaterial) {
+      ref.current.material.uniforms.uTime.value = time;
     }
-    
-    posAttr.needsUpdate = true;
   });
 
   return (
@@ -92,13 +113,14 @@ export default function CrazyParticles() {
         <bufferAttribute attach="attributes-position" args={[positions, 3]} />
         <bufferAttribute attach="attributes-color" args={[colors, 3]} />
       </bufferGeometry>
-      <pointsMaterial
-        size={0.12}
-        vertexColors
+      <shaderMaterial
+        vertexShader={vertexShader}
+        fragmentShader={fragmentShader}
+        uniforms={uniforms}
         transparent
-        opacity={0.8}
-        blending={THREE.AdditiveBlending}
         depthWrite={false}
+        blending={THREE.AdditiveBlending}
+        vertexColors
       />
     </points>
   );

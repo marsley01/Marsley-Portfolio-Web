@@ -31,7 +31,7 @@ export default function ThreeCanvas({ children, ...props }: ThreeCanvasProps) {
       }}
       {...props}
     >
-      <AdaptiveDpr pixelated />
+      <AdaptiveDpr />
       <AdaptiveEvents />
       <ambientLight intensity={0.5} />
       <directionalLight position={[5, 5, 5]} intensity={0.8} />
