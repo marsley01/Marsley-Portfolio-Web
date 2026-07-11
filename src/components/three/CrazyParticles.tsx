@@ -20,8 +20,8 @@ const vertexShader = `
     vec4 mvPosition = modelViewMatrix * vec4(pos, 1.0);
     gl_Position = projectionMatrix * mvPosition;
     
-    // Size attenuation: scale size based on distance
-    gl_PointSize = 0.12 * 300.0 / -mvPosition.z;
+    // Size attenuation: scale size based on distance, increased base value
+    gl_PointSize = 150.0 / -mvPosition.z;
   }
 `;
 

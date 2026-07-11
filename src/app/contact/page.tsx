@@ -55,10 +55,18 @@ export default function Contact() {
     form.append("message", formState.message);
 
     try {
-      const res = await fetch("https://formspree.io/f/mgvlbzyp", {
+      const res = await fetch("https://formsubmit.co/ajax/mashmarskey@gmail.com", {
         method: "POST",
-        body: form,
-        headers: { Accept: "application/json" },
+        headers: { 
+          "Content-Type": "application/json",
+          "Accept": "application/json" 
+        },
+        body: JSON.stringify({
+          name: formState.name,
+          email: formState.email,
+          message: formState.message,
+          _subject: `New message from ${formState.name} (Portfolio)`,
+        }),
       });
       if (!res.ok) throw new Error("Failed to send. Please try again.");
       setSubmitted(true);
