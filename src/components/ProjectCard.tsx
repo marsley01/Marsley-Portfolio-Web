@@ -11,6 +11,7 @@ export interface ProjectData {
   description: string;
   accentColor: string;
   image: ReactNode;
+  localImage?: string;
   resultBadge: string;
   techStack: string[];
   ctaLabel: string;
@@ -168,19 +169,8 @@ export const featuredProjects: ProjectData[] = [
     image: <ProjectPreviewCyzora />,
     resultBadge: "10+ websites delivered",
     techStack: ["Next.js", "TypeScript", "Tailwind CSS", "Git"],
-    ctaLabel: "Coming Soon",
-    ctaHref: "#",
-  },
-  {
-    title: "Mash Payments",
-    subtitle: "M-Pesa STK Push SaaS",
-    description: "Businesses save Daraja credentials once and get a shareable M-Pesa payment link at cyzora.com/pay/[slug]. Built for Instagram sellers tired of sending their number in DMs.",
-    accentColor: "from-green-500 to-emerald-600",
-    image: <ProjectPreviewWhatsApp />,
-    resultBadge: "Shareable payment links",
-    techStack: ["Next.js", "Go", "Supabase", "Daraja API"],
-    ctaLabel: "Visit Product",
-    ctaHref: "https://cyzora.com/pay",
+    ctaLabel: "Visit Platform",
+    ctaHref: "https://cyzora.co.ke",
   },
   {
     title: "KenyaLibrarySystems",
@@ -210,6 +200,7 @@ export const featuredProjects: ProjectData[] = [
     description: "An edtech platform that monitors student performance during holidays and connects tutors with students.",
     accentColor: "from-violet-500 to-purple-600",
     image: <ProjectPreviewEdyfra />,
+    localImage: "/images/projects/edyfra.png",
     resultBadge: "70+ active verified users",
     techStack: ["Next.js", "Node.js", "PostgreSQL", "TypeScript"],
     ctaLabel: "Visit Platform",
@@ -225,17 +216,6 @@ export const featuredProjects: ProjectData[] = [
     techStack: ["React", "Tailwind CSS", "Node.js", "Git"],
     ctaLabel: "Visit Store",
     ctaHref: "https://trivokenya.store",
-  },
-  {
-    title: "Belloria Beauty",
-    subtitle: "Cosmetic brand showcase",
-    description: "A cosmetic brand showcase site featuring beauty products with a premium, elegant design.",
-    accentColor: "from-pink-500 to-rose-600",
-    image: <ProjectPreviewBelloria />,
-    resultBadge: "Beauty line showcased",
-    techStack: ["React", "TypeScript", "Tailwind CSS", "Figma"],
-    ctaLabel: "Visit Store",
-    ctaHref: "https://belloriabeauty.store",
   },
 ];
 
@@ -294,7 +274,15 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
           <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent dark:from-black/20 z-10 pointer-events-none" />
           <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100 z-10 pointer-events-none" />
           
-          {project.ctaHref && project.ctaHref.startsWith("http") ? (
+          {project.localImage ? (
+            /* eslint-disable-next-line @next/next/no-img-element */
+            <img 
+              src={project.localImage}
+              alt={`${project.title} preview`}
+              className="h-full w-full object-cover opacity-90 transition-all duration-700 group-hover:scale-105 group-hover:opacity-100"
+              loading="lazy"
+            />
+          ) : project.ctaHref && project.ctaHref.startsWith("http") ? (
             /* eslint-disable-next-line @next/next/no-img-element */
             <img 
               src={`https://api.microlink.io/?url=${encodeURIComponent(project.ctaHref)}&screenshot=true&meta=false&embed=screenshot.url`}

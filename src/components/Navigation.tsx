@@ -55,8 +55,9 @@ export default function Navigation() {
   }, [mobileOpen]);
 
   return (
-    <motion.header
-      initial={{ y: -80, opacity: 0 }}
+    <>
+      <motion.header
+        initial={{ y: -80, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
       className={`fixed top-0 left-0 right-0 z-50 backdrop-blur-md transition-all duration-300 border-b ${
@@ -169,7 +170,9 @@ export default function Navigation() {
         </div>
       </div>
 
-      {/* Mobile Drawer Menu */}
+    </motion.header>
+
+      {/* Mobile Drawer Menu - Moved outside header to avoid backdrop-filter containing block issues */}
       <AnimatePresence>
         {mobileOpen && (
           <motion.div
@@ -177,7 +180,7 @@ export default function Navigation() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2 }}
-            className="fixed inset-0 z-50 flex flex-col bg-background sm:hidden"
+            className="fixed inset-0 z-[60] flex flex-col bg-background sm:hidden"
           >
             <div className="flex items-center justify-between border-b border-border/40 px-6 py-5">
               <span className="text-sm font-semibold text-foreground">Menu</span>
@@ -224,6 +227,6 @@ export default function Navigation() {
           </motion.div>
         )}
       </AnimatePresence>
-    </motion.header>
+    </>
   );
 }
