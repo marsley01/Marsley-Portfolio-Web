@@ -1,127 +1,248 @@
 "use client";
 
-import { useRef, useMemo } from "react";
-import { useFrame } from "@react-three/fiber";
+import React, { useEffect, useRef } from "react";
 import * as THREE from "three";
 
-const vertexShader = `
-  uniform float uTime;
-  varying vec3 vColor;
+export default function GalaxyBackground() {
+  const containerRef = useRef<HTMLDivElement>(null);
 
-  void main() {
-    vColor = color;
-    vec3 pos = position;
-    
-    // Apply the same flowing sine wave movement on GPU
-    pos.x = position.x + sin(uTime + position.y * 0.3) * 1.5;
-    pos.y = position.y + cos(uTime + position.z * 0.3) * 1.5;
-    pos.z = position.z + sin(uTime + position.x * 0.3) * 1.5;
-    
-    vec4 mvPosition = modelViewMatrix * vec4(pos, 1.0);
-    gl_Position = projectionMatrix * mvPosition;
-    
-    // Size attenuation: scale size based on distance, increased base value
-    gl_PointSize = 150.0 / -mvPosition.z;
-  }
-`;
+  useEffect(() => {
+    if (!containerRef.current) return;
 
-const fragmentShader = `
-  varying vec3 vColor;
+    // --- 1. Scene & Camera Setup ---
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(
+      55,
+      window.innerWidth / window.innerHeight,
+      0.1,
+      100
+    );
+    // Positioned at an isometric cosmic angle
+    camera.position.set(0, 3.5, 4.5);
 
-  void main() {
-    // Round particles
-    float dist = length(gl_PointCoord - vec2(0.5));
-    if (dist > 0.5) discard;
-    
-    // Soft edges
-    float alpha = smoothstep(0.5, 0.1, dist) * 0.8;
-    gl_FragColor = vec4(vColor, alpha);
-  }
-`;
+    const renderer = new THREE.WebGLRenderer({
+      antialias: true,
+      alpha: true,
+      powerPreference: "high-performance",
+    });
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.toneMapping = THREE.ACESFilmicToneMapping;
+    renderer.toneMappingExposure = 1.2;
+    containerRef.current.appendChild(renderer.domElement);
 
-export default function CrazyParticles() {
-  const ref = useRef<THREE.Points>(null);
-  
-  const count = 12000;
+    // --- 2. Galaxy Math Parameters ---
+    const parameters = {
+      count: 65000,
+      radius: 6,
+      branches: 4,
+      spin: 1.2,
+      randomness: 0.45,
+      power: 4.5,
+      insideColor: "#38bdf8", // Glowing Cyan core
+      outsideColor: "#6366f1", // Deep Indigo/Cosmic Purple arms
+      coreGlow: "#ffffff",
+    };
 
-  const { positions, colors } = useMemo(() => {
-    const pos = new Float32Array(count * 3);
-    const col = new Float32Array(count * 3);
-    
-    const color = new THREE.Color();
-    for (let i = 0; i < count; i++) {
-      // Abstract torus knot-like distribution
-      const u = Math.random() * Math.PI * 2;
-      const v = Math.random() * Math.PI * 2;
-      
-      // Torus knot math parameters
-      const p = 3;
-      const q = 4;
-      const r1 = 12 + 3 * Math.cos(q * u); // Tube radius
-      
-      const baseX = r1 * Math.cos(p * u);
-      const baseY = r1 * Math.sin(p * u);
-      const baseZ = 4 * Math.sin(q * u) + 2 * Math.sin(v);
-      
-      // Scatter points around the knot for a nebula effect
-      const scatter = 4.0;
-      const rx = (Math.random() - 0.5) * scatter;
-      const ry = (Math.random() - 0.5) * scatter;
-      const rz = (Math.random() - 0.5) * scatter;
-      
-      const finalX = baseX + rx;
-      const finalY = baseY + ry;
-      const finalZ = baseZ + rz;
-      
-      pos[i * 3] = finalX;
-      pos[i * 3 + 1] = finalY;
-      pos[i * 3 + 2] = finalZ;
-      
-      // Blue and White theme
-      const r = Math.random();
-      if (r < 0.4) color.setHSL(0.6, 0.9, 0.5); // Deep Blue
-      else if (r < 0.8) color.setHSL(0.55, 0.9, 0.6); // Ice Blue
-      else color.setHSL(0, 0, 1.0); // Pure White
-      
-      col[i * 3] = color.r;
-      col[i * 3 + 1] = color.g;
-      col[i * 3 + 2] = color.b;
+    // --- 3. Geometry Buffers ---
+    const geometry = new THREE.BufferGeometry();
+    const positions = new Float32Array(parameters.count * 3);
+    const colors = new Float32Array(parameters.count * 3);
+    const scales = new Float32Array(parameters.count);
+    const randomness = new Float32Array(parameters.count * 3);
+
+    const colorInside = new THREE.Color(parameters.insideColor);
+    const colorOutside = new THREE.Color(parameters.outsideColor);
+    const colorCore = new THREE.Color(parameters.coreGlow);
+
+    for (let i = 0; i < parameters.count; i++) {
+      const i3 = i * 3;
+
+      // Distance from center with higher density at core
+      const r = Math.pow(Math.random(), parameters.power) * parameters.radius;
+      const spinAngle = r * parameters.spin;
+      const branchAngle =
+        ((i % parameters.branches) * (2 * Math.PI)) / parameters.branches;
+
+      // Random dispersion along 3 axes
+      const randX =
+        Math.pow(Math.random(), parameters.power) *
+        (Math.random() < 0.5 ? 1 : -1) *
+        parameters.randomness *
+        r;
+      const randY =
+        Math.pow(Math.random(), parameters.power) *
+        (Math.random() < 0.5 ? 1 : -1) *
+        parameters.randomness *
+        r *
+        0.5; // Flatter disk
+      const randZ =
+        Math.pow(Math.random(), parameters.power) *
+        (Math.random() < 0.5 ? 1 : -1) *
+        parameters.randomness *
+        r;
+
+      positions[i3] = Math.cos(branchAngle + spinAngle) * r;
+      positions[i3 + 1] = 0;
+      positions[i3 + 2] = Math.sin(branchAngle + spinAngle) * r;
+
+      randomness[i3] = randX;
+      randomness[i3 + 1] = randY;
+      randomness[i3 + 2] = randZ;
+
+      // Color blending (Core -> Arms -> Space)
+      const mixedColor = colorInside.clone();
+      mixedColor.lerp(colorOutside, r / parameters.radius);
+
+      if (r < parameters.radius * 0.12) {
+        mixedColor.lerp(colorCore, 0.7);
+      }
+
+      colors[i3] = mixedColor.r;
+      colors[i3 + 1] = mixedColor.g;
+      colors[i3 + 2] = mixedColor.b;
+
+      // Scale per star
+      scales[i] = Math.random() * 0.8 + 0.2;
     }
-    
-    return { positions: pos, colors: col };
+
+    geometry.setAttribute("position", new THREE.BufferAttribute(positions, 3));
+    geometry.setAttribute("aRandomness", new THREE.BufferAttribute(randomness, 3));
+    geometry.setAttribute("color", new THREE.BufferAttribute(colors, 3));
+    geometry.setAttribute("aScale", new THREE.BufferAttribute(scales, 1));
+
+    // --- 4. Custom GLSL Shader (Smooth Circular Stars with Glow) ---
+    const material = new THREE.ShaderMaterial({
+      uniforms: {
+        uTime: { value: 0 },
+        uSize: { value: 25.0 * renderer.getPixelRatio() },
+      },
+      vertexShader: `
+        uniform float uTime;
+        uniform float uSize;
+        attribute vec3 aRandomness;
+        attribute float aScale;
+        varying vec3 vColor;
+
+        void main() {
+          vColor = color;
+          
+          // Current position with subtle orbital drift
+          vec4 modelPosition = modelMatrix * vec4(position, 1.0);
+          
+          // Apply dispersion offset
+          modelPosition.xyz += aRandomness;
+
+          vec4 viewPosition = viewMatrix * modelPosition;
+          gl_Position = projectionMatrix * viewPosition;
+
+          // Size attenuation
+          gl_PointSize = (uSize * aScale) / -viewPosition.z;
+        }
+      `,
+      fragmentShader: `
+        varying vec3 vColor;
+
+        void main() {
+          // Circular particle with soft exponential glow falloff
+          float dist = distance(gl_PointCoord, vec2(0.5));
+          if (dist > 0.5) discard;
+
+          float strength = 1.0 - (dist * 2.0);
+          strength = pow(strength, 2.2);
+
+          gl_FragColor = vec4(vColor, strength);
+        }
+      `,
+      transparent: true,
+      depthWrite: false,
+      blending: THREE.AdditiveBlending,
+      vertexColors: true,
+    });
+
+    const galaxy = new THREE.Points(geometry, material);
+    scene.add(galaxy);
+
+    // --- 5. Mouse & Scroll Interactivity ---
+    const mouse = { x: 0, y: 0, targetX: 0, targetY: 0 };
+    let scrollProgress = 0;
+
+    const onMouseMove = (e: MouseEvent) => {
+      mouse.targetX = (e.clientX / window.innerWidth - 0.5) * 2;
+      mouse.targetY = (e.clientY / window.innerHeight - 0.5) * 2;
+    };
+
+    const onScroll = () => {
+      const totalScroll =
+        document.documentElement.scrollHeight - window.innerHeight;
+      if (totalScroll > 0) {
+        scrollProgress = window.scrollY / totalScroll;
+      }
+    };
+
+    const onResize = () => {
+      camera.aspect = window.innerWidth / window.innerHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(window.innerWidth, window.innerHeight);
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+      material.uniforms.uSize.value = 25.0 * renderer.getPixelRatio();
+    };
+
+    window.addEventListener("mousemove", onMouseMove);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onResize);
+
+    // --- 6. 60 FPS Render Loop with Smooth Damping (Lerp) ---
+    let animId: number;
+    const clock = new THREE.Clock();
+
+    const animate = () => {
+      const elapsedTime = clock.getElapsedTime();
+
+      // Update shader uniform
+      material.uniforms.uTime.value = elapsedTime;
+
+      // Base rotation
+      galaxy.rotation.y = elapsedTime * 0.04;
+
+      // Smooth mouse lerp
+      mouse.x += (mouse.targetX - mouse.x) * 0.05;
+      mouse.y += (mouse.targetY - mouse.y) * 0.05;
+
+      // Scroll-driven camera fly-through
+      const targetCamY = 3.5 - scrollProgress * 1.5;
+      const targetCamZ = 4.5 - scrollProgress * 1.8;
+
+      camera.position.x = mouse.x * 0.8;
+      camera.position.y = targetCamY + mouse.y * 0.4;
+      camera.position.z = targetCamZ;
+      camera.lookAt(0, 0, 0);
+
+      renderer.render(scene, camera);
+      animId = requestAnimationFrame(animate);
+    };
+
+    animate();
+
+    // --- 7. Memory Cleanup ---
+    return () => {
+      window.removeEventListener("mousemove", onMouseMove);
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onResize);
+      cancelAnimationFrame(animId);
+      geometry.dispose();
+      material.dispose();
+      renderer.dispose();
+      if (containerRef.current) {
+        containerRef.current.innerHTML = "";
+      }
+    };
   }, []);
 
-  const uniforms = useMemo(() => ({
-    uTime: { value: 0 }
-  }), []);
-
-  useFrame((state) => {
-    const time = state.clock.elapsedTime * 0.5;
-    if (!ref.current) return;
-    
-    ref.current.rotation.y = time * 0.2;
-    ref.current.rotation.x = Math.sin(time * 0.1) * 0.15;
-    
-    if (ref.current.material instanceof THREE.ShaderMaterial) {
-      ref.current.material.uniforms.uTime.value = time;
-    }
-  });
-
   return (
-    <points ref={ref}>
-      <bufferGeometry>
-        <bufferAttribute attach="attributes-position" args={[positions, 3]} />
-        <bufferAttribute attach="attributes-color" args={[colors, 3]} />
-      </bufferGeometry>
-      <shaderMaterial
-        vertexShader={vertexShader}
-        fragmentShader={fragmentShader}
-        uniforms={uniforms}
-        transparent
-        depthWrite={false}
-        blending={THREE.AdditiveBlending}
-        vertexColors
-      />
-    </points>
+    <div
+      ref={containerRef}
+      className="fixed inset-0 -z-10 pointer-events-none bg-[#030712]"
+    />
   );
 }
