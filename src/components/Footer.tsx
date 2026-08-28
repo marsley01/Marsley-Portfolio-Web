@@ -6,7 +6,7 @@ export default function Footer() {
           &copy; {new Date().getFullYear()} Marsley Mash. All rights reserved.
         </p>
         <p className="text-sm text-text-secondary">
-          Built with purpose by{" "}
+          Created by{" "}
           <a
             href="https://github.com/marsley01"
             target="_blank"
