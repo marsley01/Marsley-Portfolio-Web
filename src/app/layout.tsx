@@ -10,6 +10,7 @@ import SmoothScrollProvider from "@/providers/SmoothScrollProvider";
 import BackToTop from "@/components/BackToTop";
 import CustomCursor from "@/components/CustomCursor";
 import MilkyGalaxyBackground from "@/components/three/MilkyGalaxyBackground";
+import { Analytics } from "@vercel/analytics/next";
 
 const inter = Inter({
   variable: "--font-geist-sans",
@@ -130,6 +131,7 @@ export default function RootLayout({
             <CustomCursor />
           </SmoothScrollProvider>
         </ThemeProvider>
+        <Analytics />
         <script src="https://platform.linkedin.com/badges/js/profile.js" async defer type="text/javascript"></script>
       </body>
     </html>
