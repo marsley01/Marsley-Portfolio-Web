@@ -11,7 +11,6 @@ import { DotsGrid, Rings, Crosses, GeometricShape, CornerAccents, WavyLines } fr
 import ProjectCard, { featuredProjects } from "@/components/ProjectCard";
 import RevealOnScroll from "@/components/RevealOnScroll";
 import Magnetic from "@/components/Magnetic";
-import MouseGlowBlobs from "@/components/MouseGlowBlobs";
 import ServicesSection from "@/components/ServicesSection";
 
 const skills = [
@@ -43,21 +42,17 @@ export default function Home() {
           animate={{ opacity: 1 }}
           transition={{ duration: 1.5 }}
         >
-          <div className="absolute top-1/4 left-1/4 h-64 w-64 rounded-full bg-accent-start/10 blur-[120px]" />
-          <div className="absolute bottom-1/4 right-1/4 h-80 w-80 rounded-full bg-accent-end/10 blur-[140px]" />
+          <div className="absolute top-1/4 left-1/4 h-64 w-64 rounded-full bg-accent-start/10 blur-[60px]" />
+          <div className="absolute bottom-1/4 right-1/4 h-80 w-80 rounded-full bg-accent-end/10 blur-[80px]" />
         </motion.div>
 
         <DotsGrid density="sparse" className="opacity-50" />
         <Crosses />
         <GeometricShape />
 
-        <MouseGlowBlobs />
-
         <div className="pointer-events-none absolute inset-0 z-[1]" style={{ background: "radial-gradient(ellipse 80% 80% at 50% 50%, transparent 10%, rgba(0,0,0,0.7) 100%)" }} />
 
         <div className="relative z-10 max-w-3xl text-center">
-          <div className="pointer-events-none absolute left-1/2 top-1/2 -z-10 h-[400px] w-[80%] -translate-x-1/2 -translate-y-1/2 rounded-full bg-background/60 blur-[60px]" />
-          
           <motion.div
             initial={prefersReduced ? {} : { opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}

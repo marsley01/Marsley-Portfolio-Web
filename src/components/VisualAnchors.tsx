@@ -72,6 +72,7 @@ export function CornerAccents({ className = "" }: { className?: string }) {
   return (
     <svg
       className={`pointer-events-none absolute inset-0 h-full w-full ${className}`}
+      viewBox="0 0 1000 1000"
       preserveAspectRatio="none"
     >
       <path
@@ -89,42 +90,42 @@ export function CornerAccents({ className = "" }: { className?: string }) {
         strokeWidth="1"
       />
       <path
-        d="M100%,80 Q100%,0 calc(100% - 80px),0"
+        d="M1000,80 Q1000,0 920,0"
         fill="none"
         stroke="currentColor"
         className="text-text-secondary/10"
         strokeWidth="1"
       />
       <path
-        d="M100%,40 Q100%,0 calc(100% - 40px),0"
+        d="M1000,40 Q1000,0 960,0"
         fill="none"
         stroke="currentColor"
         className="text-text-secondary/10"
         strokeWidth="1"
       />
       <path
-        d="M0,calc(100% - 80px) Q0,100% 80,100%"
+        d="M0,920 Q0,1000 80,1000"
         fill="none"
         stroke="currentColor"
         className="text-text-secondary/10"
         strokeWidth="1"
       />
       <path
-        d="M0,calc(100% - 40px) Q0,100% 40,100%"
+        d="M0,960 Q0,1000 40,1000"
         fill="none"
         stroke="currentColor"
         className="text-text-secondary/10"
         strokeWidth="1"
       />
       <path
-        d="M100%,calc(100% - 80px) Q100%,100% calc(100% - 80px),100%"
+        d="M1000,920 Q1000,1000 920,1000"
         fill="none"
         stroke="currentColor"
         className="text-text-secondary/10"
         strokeWidth="1"
       />
       <path
-        d="M100%,calc(100% - 40px) Q100%,100% calc(100% - 40px),100%"
+        d="M1000,960 Q1000,1000 960,1000"
         fill="none"
         stroke="currentColor"
         className="text-text-secondary/10"

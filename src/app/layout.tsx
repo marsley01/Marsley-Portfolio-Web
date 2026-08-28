@@ -9,7 +9,6 @@ import PageTransition from "@/components/PageTransition";
 import SmoothScrollProvider from "@/providers/SmoothScrollProvider";
 import BackToTop from "@/components/BackToTop";
 import CustomCursor from "@/components/CustomCursor";
-import HeroSceneBackground from "@/components/three/HeroSceneBackground";
 
 const inter = Inter({
   variable: "--font-geist-sans",
@@ -117,10 +116,6 @@ export default function RootLayout({
             })
           }}
         />
-        <div className="grain-overlay" />
-        <div className="pointer-events-none fixed inset-0 -z-10 opacity-60">
-          <HeroSceneBackground />
-        </div>
         <ThemeProvider>
           <SmoothScrollProvider>
             <Navigation />

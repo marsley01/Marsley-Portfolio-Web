@@ -1,0 +1,280 @@
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - generic [ref=e4]:
+      - link "MM" [ref=e5] [cursor=pointer]:
+        - /url: /
+      - navigation [ref=e6]:
+        - link "Home" [ref=e7] [cursor=pointer]:
+          - /url: /
+        - link "About" [ref=e9] [cursor=pointer]:
+          - /url: /about
+        - link "Projects" [ref=e10] [cursor=pointer]:
+          - /url: /projects
+        - link "Contact" [ref=e11] [cursor=pointer]:
+          - /url: /contact
+      - generic [ref=e12]:
+        - button "Toggle theme" [ref=e13]
+        - link "LinkedIn" [ref=e20] [cursor=pointer]:
+          - /url: https://ke.linkedin.com/in/marsley-anunda-840ab82b0
+        - link "Contact Me" [ref=e25] [cursor=pointer]:
+          - /url: /contact
+  - main [ref=e26]:
+    - generic [ref=e27]:
+      - generic [ref=e29]:
+        - generic [ref=e30]: Founder & Builder · Nairobi, Kenya
+        - heading "Marsley Mash" [level=1] [ref=e33]:
+          - generic [ref=e34]: Marsley
+          - generic [ref=e35]: Mash
+        - paragraph [ref=e36]: Founder running multiple ventures from Nairobi — edtech, fintech, e-commerce, and SaaS. I don't just build websites. I build businesses.
+        - generic [ref=e37]:
+          - link "Explore Projects" [ref=e39] [cursor=pointer]:
+            - /url: /projects
+          - link "Get in Touch" [ref=e41] [cursor=pointer]:
+            - /url: /contact
+      - paragraph [ref=e47]: I'm Mash. I build products, run them, and figure it out as I go. No CS degree. No co-founder (mostly). Just someone who got tired of waiting for the right conditions and started shipping. My build layer is Cursor, Claude, and Antigravity — not because I can't code, but because leverage matters more than purity.
+      - generic [ref=e49]:
+        - generic [ref=e50]:
+          - heading "Featured Projects" [level=2] [ref=e51]
+          - paragraph [ref=e52]: A glimpse into what I'm building.
+        - generic [ref=e53]:
+          - generic [ref=e56]:
+            - img "Cyzora preview" [ref=e58]
+            - generic [ref=e59]:
+              - generic [ref=e60]:
+                - heading "Cyzora" [level=3] [ref=e61]
+                - paragraph [ref=e62]: E-commerce platform & web builds
+              - generic [ref=e63]: 10+ websites delivered
+              - paragraph [ref=e66]: E-commerce platform and production-grade web builds. The revenue engine behind everything else.
+              - generic [ref=e67]:
+                - generic [ref=e68]:
+                  - generic "Next.js" [ref=e69]:
+                    - img [ref=e71]:
+                      - generic [ref=e73]: "N"
+                  - generic "TypeScript" [ref=e74]:
+                    - img [ref=e76]:
+                      - generic [ref=e78]: TS
+                  - generic "Tailwind CSS" [ref=e79]
+                  - generic "Git" [ref=e83]
+                - link "Visit Platform" [ref=e90] [cursor=pointer]:
+                  - /url: https://cyzora.co.ke
+          - generic [ref=e95]:
+            - img "KenyaLibrarySystems preview" [ref=e97]
+            - generic [ref=e98]:
+              - generic [ref=e99]:
+                - heading "KenyaLibrarySystems" [level=3] [ref=e100]
+                - paragraph [ref=e101]: B2B SaaS for school libraries
+              - generic [ref=e102]: Multi-tenant, RLS-secured
+              - paragraph [ref=e105]: Library management SaaS for schools. QR-based borrow/return, multi-tenant Supabase RLS, Kenya Data Protection Act 2019 compliant.
+              - generic [ref=e106]:
+                - generic [ref=e107]:
+                  - generic "Next.js" [ref=e108]:
+                    - img [ref=e110]:
+                      - generic [ref=e112]: "N"
+                  - generic "Supabase" [ref=e113]
+                - link "Visit Platform" [ref=e117] [cursor=pointer]:
+                  - /url: https://kenyalibrarysystem-kohl.vercel.app
+          - generic [ref=e122]:
+            - img "agent-preflight preview" [ref=e124]
+            - generic [ref=e125]:
+              - generic [ref=e126]:
+                - heading "agent-preflight" [level=3] [ref=e127]
+                - paragraph [ref=e128]: Pre-deploy checklist for vibe coders
+              - generic [ref=e129]: Open source
+              - paragraph [ref=e132]: The pre-deploy quality gate for AI-assisted builders. Catches exposed RLS, leaked API keys, broken auth, and uncleaned env vars before they hit production.
+              - generic [ref=e133]:
+                - generic [ref=e134]:
+                  - generic "TypeScript" [ref=e135]:
+                    - img [ref=e137]:
+                      - generic [ref=e139]: TS
+                  - generic "Supabase" [ref=e140]
+                  - generic "M-Pesa" [ref=e144]
+                  - generic "Paystack" [ref=e149]:
+                    - img [ref=e151]:
+                      - generic [ref=e153]: PS
+                - link "View on GitHub" [ref=e154] [cursor=pointer]:
+                  - /url: https://github.com/marsley01/agent-preflight
+          - generic [ref=e159]:
+            - img "Edyfra preview" [ref=e161]
+            - generic [ref=e162]:
+              - generic [ref=e163]:
+                - heading "Edyfra" [level=3] [ref=e164]
+                - paragraph [ref=e165]: Edtech bridging holiday learning gaps
+              - generic [ref=e166]: 70+ active verified users
+              - paragraph [ref=e169]: An edtech platform that monitors student performance during holidays and connects tutors with students.
+              - generic [ref=e170]:
+                - generic [ref=e171]:
+                  - generic "Next.js" [ref=e172]:
+                    - img [ref=e174]:
+                      - generic [ref=e176]: "N"
+                  - generic "Node.js" [ref=e177]
+                  - generic "PostgreSQL" [ref=e185]:
+                    - img [ref=e187]:
+                      - generic [ref=e191]: SQL
+                  - generic "TypeScript" [ref=e192]:
+                    - img [ref=e194]:
+                      - generic [ref=e196]: TS
+                - link "Visit Platform" [ref=e197] [cursor=pointer]:
+                  - /url: https://edyfra-v2.vercel.app
+          - generic [ref=e202]:
+            - img "Trivo Kenya preview" [ref=e204]
+            - generic [ref=e205]:
+              - generic [ref=e206]:
+                - heading "Trivo Kenya" [level=3] [ref=e207]
+                - paragraph [ref=e208]: Premium tech gadgets store
+              - generic [ref=e209]: 300+ products listed
+              - paragraph [ref=e212]: An online store selling premium tech gadgets and accessories for the modern consumer.
+              - generic [ref=e213]:
+                - generic [ref=e214]:
+                  - generic "React" [ref=e215]
+                  - generic "Tailwind CSS" [ref=e222]
+                  - generic "Node.js" [ref=e226]
+                  - generic "Git" [ref=e234]
+                - link "Visit Store" [ref=e241] [cursor=pointer]:
+                  - /url: https://trivokenya.store
+        - link "View All Projects" [ref=e245] [cursor=pointer]:
+          - /url: /projects
+      - generic [ref=e250]:
+        - heading "By the Numbers" [level=2] [ref=e251]
+        - paragraph [ref=e252]: A snapshot of the impact so far.
+        - generic [ref=e253]:
+          - generic [ref=e254]:
+            - paragraph [ref=e255]:
+              - generic [ref=e256]: "0"
+              - text: +
+            - paragraph [ref=e257]: Projects Shipped
+          - generic [ref=e258]:
+            - paragraph [ref=e259]:
+              - generic [ref=e260]: "0"
+              - text: +
+            - paragraph [ref=e261]: Years Building
+          - generic [ref=e262]:
+            - paragraph [ref=e263]:
+              - generic [ref=e264]: "0"
+              - text: +
+            - paragraph [ref=e265]: Products Live
+          - generic [ref=e266]:
+            - paragraph [ref=e267]:
+              - generic [ref=e268]: "0"
+              - text: +
+            - paragraph [ref=e269]: Clients Served
+      - generic [ref=e271]:
+        - generic [ref=e272]:
+          - heading "Skills & Technologies" [level=2] [ref=e273]
+          - paragraph [ref=e274]: Tools I use to bring ideas to life.
+        - generic [ref=e275]:
+          - generic [ref=e276]:
+            - img [ref=e278]:
+              - generic [ref=e280]: NR
+            - text: Next.js / React
+          - generic [ref=e281]:
+            - img [ref=e283]:
+              - generic [ref=e285]: TS
+            - text: TypeScript
+          - generic [ref=e286]: Tailwind CSS
+          - generic [ref=e290]: Node.js
+          - generic [ref=e298]: Python
+          - generic [ref=e303]: AI / LLM Integration
+          - generic [ref=e308]: UI/UX Design
+          - generic [ref=e315]: Databases (SQL / NoSQL)
+          - generic [ref=e321]: Git / GitHub
+      - generic [ref=e327]:
+        - heading "Tools I Use" [level=2] [ref=e328]
+        - paragraph [ref=e329]: The stack behind the work.
+        - generic [ref=e332]:
+          - generic [ref=e333]:
+            - img [ref=e335]:
+              - generic [ref=e337]: TS
+            - text: TypeScript
+          - generic [ref=e338]: Supabase
+          - generic [ref=e342]: Firebase
+          - generic [ref=e349]: WordPress
+          - generic [ref=e354]: Shopify
+          - generic [ref=e361]:
+            - img [ref=e363]:
+              - generic [ref=e365]: Wix
+            - text: Wix
+          - generic [ref=e366]: Netlify
+          - generic [ref=e371]: Cursor
+          - generic [ref=e376]: React
+          - generic [ref=e383]:
+            - img [ref=e385]:
+              - generic [ref=e387]: "N"
+            - text: Next.js
+          - generic [ref=e388]: Tailwind CSS
+          - generic [ref=e392]: Python
+          - generic [ref=e397]: Node.js
+          - generic [ref=e405]: Figma
+          - generic [ref=e413]:
+            - img [ref=e415]:
+              - generic [ref=e419]: SQL
+            - text: PostgreSQL
+          - generic [ref=e420]: Git
+          - generic [ref=e427]:
+            - img [ref=e429]:
+              - generic [ref=e431]: TS
+            - text: TypeScript
+          - generic [ref=e432]: Supabase
+          - generic [ref=e436]: Firebase
+          - generic [ref=e443]: WordPress
+          - generic [ref=e448]: Shopify
+          - generic [ref=e455]:
+            - img [ref=e457]:
+              - generic [ref=e459]: Wix
+            - text: Wix
+          - generic [ref=e460]: Netlify
+          - generic [ref=e465]: Cursor
+          - generic [ref=e470]: React
+          - generic [ref=e477]:
+            - img [ref=e479]:
+              - generic [ref=e481]: "N"
+            - text: Next.js
+          - generic [ref=e482]: Tailwind CSS
+          - generic [ref=e486]: Python
+          - generic [ref=e491]: Node.js
+          - generic [ref=e499]: Figma
+          - generic [ref=e507]:
+            - img [ref=e509]:
+              - generic [ref=e513]: SQL
+            - text: PostgreSQL
+          - generic [ref=e514]: Git
+      - generic [ref=e522]:
+        - generic [ref=e523]:
+          - heading "What I Do" [level=2] [ref=e524]
+          - paragraph [ref=e525]: I help founders and teams build, launch, and scale digital products.
+        - generic [ref=e526]:
+          - generic [ref=e527]:
+            - heading "Full-Stack Web Development" [level=3] [ref=e532]
+            - paragraph [ref=e533]: End-to-end web applications built with Next.js, React, TypeScript, and modern tooling. From MVP to production.
+          - generic [ref=e534]:
+            - heading "SaaS & Product Development" [level=3] [ref=e539]
+            - paragraph [ref=e540]: Build and launch scalable SaaS products with authentication, payments, dashboards, and multi-tenant architecture.
+          - generic [ref=e541]:
+            - heading "AI / LLM Integration" [level=3] [ref=e546]
+            - paragraph [ref=e547]: Integrate AI into your product — chatbots, agents, RAG pipelines, embeddings, and custom model fine-tuning.
+          - generic [ref=e548]:
+            - heading "UI/UX Design & Prototyping" [level=3] [ref=e552]
+            - paragraph [ref=e553]: Design systems, component libraries, interactive prototypes, and pixel-perfect implementations in Tailwind CSS.
+          - generic [ref=e554]:
+            - heading "API & Backend Development" [level=3] [ref=e560]
+            - paragraph [ref=e561]: REST/GraphQL APIs, database design (PostgreSQL, MongoDB), serverless functions, and real-time infrastructure.
+          - generic [ref=e562]:
+            - heading "Technical Consulting" [level=3] [ref=e566]
+            - paragraph [ref=e567]: Architecture reviews, tech stack decisions, performance audits, and team mentorship for early-stage teams.
+      - generic [ref=e570]:
+        - heading "Let's Build Something" [level=2] [ref=e571]
+        - paragraph [ref=e572]: Whether it's a web app, a brand, or the next big idea — I'm always open to collaborations.
+        - link "Start a Conversation" [ref=e574] [cursor=pointer]:
+          - /url: /contact
+        - generic [ref=e575]:
+          - link "mashmarsley@gmail.com" [ref=e576] [cursor=pointer]:
+            - /url: mailto:mashmarsley@gmail.com
+          - link "WhatsApp Me" [ref=e580] [cursor=pointer]:
+            - /url: https://wa.me/254740610772
+  - contentinfo [ref=e583]:
+    - generic [ref=e584]:
+      - paragraph [ref=e585]: © 2026 Marsley Mash. All rights reserved.
+      - paragraph [ref=e586]:
+        - text: Built with purpose by
+        - link "Mash" [ref=e587] [cursor=pointer]:
+          - /url: https://github.com/marsley01
+  - button "Toggle chat assistant"
