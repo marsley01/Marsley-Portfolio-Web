@@ -138,6 +138,17 @@ export default function Navigation() {
                 <circle cx="4" cy="4" r="2" />
               </svg>
             </Link>
+            <a
+              href="https://x.com/marsleymash"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="rounded-full border border-border/30 bg-card/40 p-2.5 text-text-secondary transition-colors hover:text-foreground hover:bg-card/80"
+              aria-label="X (Twitter)"
+            >
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+              </svg>
+            </a>
             <Link
               href="/contact"
               className="rounded-full bg-accent px-4 py-2 text-xs font-semibold text-white transition-opacity hover:opacity-90 active:scale-[0.98]"
@@ -148,6 +159,17 @@ export default function Navigation() {
 
           {/* Mobile Hamburger Button */}
           <div className="flex sm:hidden items-center gap-2">
+            <a
+              href="https://x.com/marsleymash"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="rounded-full border border-border/30 bg-card/40 p-2 text-text-secondary"
+              aria-label="X (Twitter)"
+            >
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+              </svg>
+            </a>
             <button
               onClick={toggleTheme}
               className="rounded-full border border-border/30 bg-card/40 p-2 text-text-secondary"

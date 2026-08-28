@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import Link from "next/link";
 import dynamic from "next/dynamic";
 import Section from "@/components/Section";
@@ -27,10 +27,6 @@ const skills = [
 
 export default function Home() {
   const prefersReduced = useReducedMotion();
-
-  const { scrollYProgress } = useScroll();
-  const canvasOpacity = useTransform(scrollYProgress, [0, 0.15], [1, 0]);
-  const canvasBlur = useTransform(scrollYProgress, [0, 0.15], ["blur(0px)", "blur(20px)"]);
 
   return (
     <>
@@ -159,7 +155,7 @@ export default function Home() {
       <section className="relative pt-24 pb-8">
         <div className="mx-auto max-w-3xl text-center px-6">
           <p className="text-lg leading-relaxed text-text-secondary sm:text-xl">
-            I&apos;m Mash. I build products, run them, and figure it out as I go. No CS degree. No co-founder (mostly). Just someone who got tired of waiting for the right conditions and started shipping. My build layer is Cursor, Claude, and Antigravity &mdash; not because I can&apos;t code, but because leverage matters more than purity.
+            I&apos;m Mash. Twenty years old, building from Nairobi. I have products deployed across edtech, e-commerce, SaaS, and fintech — and I run electronics operations at Munchify Market. My build layer is Cursor, Claude, and Antigravity. I ship, deploy, and iterate. I&apos;m still early. But I&apos;m moving, and I&apos;m not stopping.
           </p>
         </div>
       </section>
@@ -206,10 +202,10 @@ export default function Home() {
             A snapshot of the impact so far.
           </p>
           <div className="mt-12 grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
-            <StatsCounter target={10} suffix="+" label="Projects Shipped" />
+            <StatsCounter target={10} suffix="+" label="Websites Delivered" />
             <StatsCounter target={3} suffix="+" label="Years Building" />
-            <StatsCounter target={6} suffix="+" label="Products Live" />
-            <StatsCounter target={20} suffix="+" label="Clients Served" />
+            <StatsCounter target={5} suffix="+" label="Products Deployed" />
+            <StatsCounter target={1} label="Open Source" />
           </div>
         </RevealOnScroll>
       </Section>

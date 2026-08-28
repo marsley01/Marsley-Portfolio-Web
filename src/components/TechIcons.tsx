@@ -29,26 +29,6 @@ export const techIcons: Record<string, ReactNode> = {
       />
     </svg>
   ),
-  Firebase: (
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
-      <path
-        d="M3.15 16.5L9 2.5l2.5 5.5-2.5 8.5h-5.85z"
-        fill="#FFCA28"
-      />
-      <path
-        d="M9 2.5L3.15 16.5H9l4-7-4-7z"
-        fill="#FFA000"
-      />
-      <path
-        d="M13 8l-2.5 5.5L9 16.5h7.5L13 8z"
-        fill="#FF8F00"
-      />
-      <path
-        d="M16.5 16.5L13 8l-1.5 3-1.5 5.5h6.5z"
-        fill="#DD2C00"
-      />
-    </svg>
-  ),
   WordPress: (
     <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
       <circle cx="12" cy="12" r="10" fill="#21759B" />

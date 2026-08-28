@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import Section from "@/components/Section";
 import { DotsGrid, Crosses, Rings, GeometricShape, CornerAccents } from "@/components/VisualAnchors";
 import { TechIcon } from "@/components/TechIcons";
+import { useAge } from "@/lib/useAge";
 
 const milestones = [
   {
@@ -32,9 +33,9 @@ const milestones = [
   },
   {
     year: "2026",
-    title: "Building the Future",
+    title: "Munchify & Multi-Venture",
     description:
-      "Building SaaS products, growing Cyzora, and integrating AI into practical tools. Always learning, always shipping.",
+      "Running electronics operations at Munchify Market. Six products deployed across edtech, SaaS, fintech, and e-commerce.",
   },
 ];
 
@@ -48,12 +49,12 @@ const values = [
     description: "Launch early, iterate often, and never stop learning.",
   },
   {
-    title: "Design Matters",
-    description: "Great products need great experiences — form meets function.",
+    title: "Leverage Over Purity",
+    description: "The best builders make the fastest decisions — not the most code.",
   },
   {
-    title: "Empower Others",
-    description: "Sharing knowledge and inspiring the next generation of creators.",
+    title: "Real Over Impressive",
+    description: "Real customers, real revenue, real problems. Everything else is noise.",
   },
 ];
 
@@ -70,6 +71,8 @@ const skills = [
 ];
 
 export default function About() {
+  const age = useAge();
+
   return (
     <>
       <section className="relative flex min-h-[70vh] flex-col items-center justify-center overflow-hidden px-6 pt-28">
@@ -82,13 +85,25 @@ export default function About() {
           transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
           className="max-w-2xl text-center"
         >
+          {/* Drop your photo at: /public/images/profile.jpg */}
+          <div className="flex justify-center mb-8">
+            <div className="w-36 h-36 rounded-full overflow-hidden border-2 border-neutral-700">
+              <img
+                src="/images/profile.jpg"
+                alt="Marsley Mash"
+                className="w-full h-full object-cover"
+                onError={(e) => {
+                  e.currentTarget.style.display = "none";
+                  e.currentTarget.parentElement!.innerHTML = '<div class="w-full h-full flex items-center justify-center bg-neutral-800 text-white font-bold text-2xl">MM</div>';
+                }}
+              />
+            </div>
+          </div>
           <h1 className="text-4xl font-bold tracking-tight sm:text-5xl">
             About Me
           </h1>
           <p className="mt-6 text-lg leading-relaxed text-text-secondary">
-            I&apos;m Marsley Mash — a web & software developer based in Nairobi,
-            Kenya. I build brands, platforms, and tools that solve real
-            problems.
+            I&apos;m Mash. I&apos;m {age}, born and raised in Nairobi. I&apos;m studying IT at JKUAT and I&apos;ve been building things on the internet since before I really understood what I was doing.
           </p>
         </motion.div>
       </section>
@@ -96,48 +111,40 @@ export default function About() {
       <Section className="relative bg-card/30">
         <GeometricShape />
         <CornerAccents />
-        <div className="mx-auto grid max-w-4xl gap-12 lg:grid-cols-2">
+        <div className="mx-auto max-w-4xl">
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
             viewport={{ once: true }}
           >
-            <h2 className="text-2xl font-bold tracking-tight">Background</h2>
-            <p className="mt-4 leading-relaxed text-text-secondary">
-              I&apos;m an IT student at JKUAT and a self-taught developer who
-              learns by building. What started as curiosity turned into a
-              full-blown passion for creating digital products that make a
-              difference.
-            </p>
-            <p className="mt-4 leading-relaxed text-text-secondary">
-              Today I run Cyzora, Edyfra, and I&apos;m constantly exploring how AI
-              and software can solve everyday problems.
-            </p>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
-            viewport={{ once: true }}
-          >
-            <h2 className="text-2xl font-bold tracking-tight">
-              Current Focus
-            </h2>
-            <ul className="mt-4 space-y-4">
-              {[
-                "Building and scaling SaaS products",
-                "Growing Cyzora — my web development agency",
-                "Integrating AI into practical tools and bots",
-                "Exploring new tech and shipping projects",
-              ].map((item) => (
-                <li key={item} className="flex items-start gap-3">
-                  <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />
-                  <span className="text-text-secondary">{item}</span>
-                </li>
-              ))}
-            </ul>
+            <h2 className="text-2xl font-bold tracking-tight">My Story</h2>
+            <div className="mt-4 space-y-4 leading-relaxed text-text-secondary">
+              <p>
+                It started out of frustration more than passion. I kept seeing problems around me — things that didn&apos;t work the way they should, gaps that nobody was filling — and I got tired of waiting for someone else to fix them. So I started teaching myself. Not from a bootcamp, not from a structured course. Just YouTube, documentation, trial and error, and a lot of late nights staring at error messages I didn&apos;t understand yet.
+              </p>
+              <p>
+                The first few things I built were bad. Really bad. But I kept going because the feeling of making something work — even something small — was addictive. Every time something shipped, even if it was broken half the time, I wanted to build the next thing. That habit never left.
+              </p>
+              <p>
+                Right now my days run at Munchify Market, where I handle operations for electronics and gadgets — sourcing, fulfilment, keeping orders moving across Kenya. It&apos;s taught me more about how business actually works than anything I&apos;ve studied in a classroom. You learn fast when real money and real customers are involved. Mistakes cost you. Speed matters. Relationships matter more than you think.
+              </p>
+              <p>
+                At night I build. I have products deployed — edtech, SaaS, e-commerce, payments. Some are close to fully launching. Some are still finding their footing. But they&apos;re real, they&apos;re live, and I built every one of them myself.
+              </p>
+              <p>
+                The way I build has evolved. I use Cursor, Claude, and Antigravity — not because I can&apos;t write code, but because I figured out early that the builders who win aren&apos;t the ones who write the most code. They&apos;re the ones who make the best decisions fastest. I care about leverage. I care about shipping. I care about whether the thing I&apos;m building actually solves a real problem for a real person.
+              </p>
+              <p>
+                Today I have six products deployed: Cyzora (web builds + e-commerce), Edyfra (edtech, launching soon), KenyaLibrarySystems (B2B SaaS), Mash Payments (fintech infrastructure), Trivo Kenya (gadgets), and GamesNTech (digital marketplace). All live on Vercel.
+              </p>
+              <p>
+                I&apos;m not chasing a job at a big tech company. I&apos;m not trying to raise a seed round right now. I&apos;m trying to build things that work, grow them, and prove the idea — that a 20-year-old from Nairobi building alone at night can ship products that compete with anything.
+              </p>
+              <p className="font-medium text-foreground">
+                I&apos;m still early. I know that. But I&apos;m moving, and I&apos;m not stopping.
+              </p>
+            </div>
           </motion.div>
         </div>
       </Section>

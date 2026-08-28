@@ -55,7 +55,7 @@ export default function Contact() {
     form.append("message", formState.message);
 
     try {
-      const res = await fetch("https://formsubmit.co/ajax/mashmarskey@gmail.com", {
+      const res = await fetch("https://formsubmit.co/ajax/mashmarsley@gmail.com", {
         method: "POST",
         headers: { 
           "Content-Type": "application/json",

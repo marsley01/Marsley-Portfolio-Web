@@ -5,7 +5,6 @@ import { TechIcon } from "./TechIcons";
 const tools = [
   "TypeScript",
   "Supabase",
-  "Firebase",
   "WordPress",
   "Shopify",
   "Wix",

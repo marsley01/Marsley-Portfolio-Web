@@ -13,6 +13,8 @@ export interface ProjectData {
   image: ReactNode;
   localImage?: string;
   resultBadge: string;
+  stat?: string;
+  status?: "live" | "deployed" | "launching" | "open-source" | "internal";
   techStack: string[];
   ctaLabel: string;
   ctaHref: string;
@@ -160,6 +162,40 @@ export function ProjectPreviewMoreSaaS() {
   );
 }
 
+export function ProjectPreviewMashPayments() {
+  return (
+    <svg viewBox="0 0 200 160" className="h-full w-full">
+      <rect width="200" height="160" rx="12" fill="#1a1a1a" />
+      <rect x="30" y="25" width="140" height="100" rx="8" fill="#22c55e" opacity="0.08" />
+      <rect x="50" y="45" width="100" height="60" rx="6" fill="#22c55e" opacity="0.12" />
+      <rect x="65" y="60" width="70" height="8" rx="4" fill="#16a34a" opacity="0.3" />
+      <rect x="75" y="75" width="50" height="6" rx="3" fill="#22c55e" opacity="0.2" />
+      <circle cx="100" cy="115" r="4" fill="#22c55e" opacity="0.4" />
+      <circle cx="120" cy="115" r="4" fill="#16a34a" opacity="0.3" />
+      <circle cx="80" cy="115" r="4" fill="#22c55e" opacity="0.3" />
+    </svg>
+  );
+}
+
+export function ProjectPreviewGamesNTech() {
+  return (
+    <svg viewBox="0 0 200 160" className="h-full w-full">
+      <rect width="200" height="160" rx="12" fill="#1a1a1a" />
+      <rect x="25" y="20" width="150" height="110" rx="10" fill="#8b5cf6" opacity="0.08" />
+      <rect x="40" y="40" width="50" height="35" rx="4" fill="#8b5cf6" opacity="0.2" />
+      <rect x="95" y="40" width="50" height="35" rx="4" fill="#7c3aed" opacity="0.15" />
+      <rect x="40" y="80" width="50" height="35" rx="4" fill="#7c3aed" opacity="0.1" />
+      <rect x="95" y="80" width="50" height="35" rx="4" fill="#8b5cf6" opacity="0.08" />
+      <rect x="48" y="55" width="24" height="4" rx="2" fill="#c4b5fd" opacity="0.3" />
+      <rect x="103" y="55" width="24" height="4" rx="2" fill="#c4b5fd" opacity="0.2" />
+      <rect x="48" y="95" width="24" height="4" rx="2" fill="#c4b5fd" opacity="0.15" />
+      <rect x="103" y="95" width="24" height="4" rx="2" fill="#c4b5fd" opacity="0.1" />
+      <circle cx="165" cy="50" r="12" fill="#8b5cf6" opacity="0.15" />
+      <circle cx="165" cy="50" r="5" fill="#c4b5fd" opacity="0.3" />
+    </svg>
+  );
+}
+
 export const featuredProjects: ProjectData[] = [
   {
     title: "Cyzora",
@@ -168,6 +204,7 @@ export const featuredProjects: ProjectData[] = [
     accentColor: "from-blue-500 to-indigo-600",
     image: <ProjectPreviewCyzora />,
     resultBadge: "10+ websites delivered",
+    status: "live",
     techStack: ["Next.js", "TypeScript", "Tailwind CSS", "Git"],
     ctaLabel: "Visit Platform",
     ctaHref: "https://cyzora.co.ke",
@@ -179,9 +216,23 @@ export const featuredProjects: ProjectData[] = [
     accentColor: "from-violet-500 to-purple-600",
     image: <ProjectPreviewEdyfra />,
     resultBadge: "Multi-tenant, RLS-secured",
+    status: "deployed",
     techStack: ["Next.js", "Supabase"],
     ctaLabel: "Visit Platform",
     ctaHref: "https://kenyalibrarysystem-kohl.vercel.app",
+  },
+  {
+    title: "Mash Payments",
+    subtitle: "Multi-tenant M-Pesa STK Push SaaS",
+    description: "Payment infrastructure built on M-Pesa STK Push. Multi-tenant architecture — powers payments across my own deployed ventures.",
+    accentColor: "from-green-500 to-emerald-600",
+    image: <ProjectPreviewMashPayments />,
+    resultBadge: "Internal SaaS",
+    stat: "Powers my own stack",
+    status: "internal",
+    techStack: ["Next.js", "Supabase", "M-Pesa", "TypeScript"],
+    ctaLabel: "Coming Soon",
+    ctaHref: "#",
   },
   {
     title: "agent-preflight",
@@ -190,6 +241,7 @@ export const featuredProjects: ProjectData[] = [
     accentColor: "from-gray-500 to-zinc-600",
     image: <ProjectPreviewMoreSaaS />,
     resultBadge: "Open source",
+    status: "open-source",
     techStack: ["TypeScript", "Supabase", "M-Pesa", "Paystack"],
     ctaLabel: "View on GitHub",
     ctaHref: "https://github.com/marsley01/agent-preflight",
@@ -202,6 +254,7 @@ export const featuredProjects: ProjectData[] = [
     image: <ProjectPreviewEdyfra />,
     localImage: "/images/projects/edyfra.png",
     resultBadge: "70+ active verified users",
+    status: "launching",
     techStack: ["Next.js", "Node.js", "PostgreSQL", "TypeScript"],
     ctaLabel: "Visit Platform",
     ctaHref: "https://edyfra-v2.vercel.app",
@@ -213,15 +266,36 @@ export const featuredProjects: ProjectData[] = [
     accentColor: "from-orange-500 to-red-600",
     image: <ProjectPreviewTrivo />,
     resultBadge: "300+ products listed",
+    status: "deployed",
     techStack: ["React", "Tailwind CSS", "Node.js", "Git"],
     ctaLabel: "Visit Store",
     ctaHref: "https://trivokenya.store",
+  },
+  {
+    title: "GamesNTech",
+    subtitle: "Digital marketplace for third-party sellers",
+    description: "A marketplace for digital products — game credits, software licenses, and digital goods. Built for third-party sellers.",
+    accentColor: "from-purple-500 to-violet-600",
+    image: <ProjectPreviewGamesNTech />,
+    resultBadge: "Live on Vercel",
+    status: "deployed",
+    techStack: ["Next.js", "Supabase", "TypeScript", "Tailwind"],
+    ctaLabel: "Visit Store",
+    ctaHref: "https://gamesntech.vercel.app",
   },
 ];
 
 export const allProjects: ProjectData[] = [
   ...featuredProjects
 ];
+
+const statusConfig: Record<string, { label: string; className: string }> = {
+  live: { label: "Live", className: "bg-green-500/10 text-green-400 border-green-500/20" },
+  deployed: { label: "Deployed", className: "bg-blue-500/10 text-blue-400 border-blue-500/20" },
+  launching: { label: "Launching Soon", className: "bg-amber-500/10 text-amber-400 border-amber-500/20" },
+  "open-source": { label: "Open Source", className: "bg-purple-500/10 text-purple-400 border-purple-500/20" },
+  internal: { label: "Internal", className: "bg-gray-500/10 text-gray-400 border-gray-500/20" },
+};
 
 interface ProjectCardProps {
   project: ProjectData;
@@ -267,6 +341,12 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
       className="group relative flex flex-col overflow-hidden rounded-3xl border border-white/10 bg-white/[0.03] backdrop-blur-2xl shadow-2xl shadow-black/5 transition-all duration-500 hover:shadow-black/20 dark:bg-white/[0.03] dark:hover:shadow-black/40"
     >
       <div className={`h-px w-full bg-gradient-to-r ${project.accentColor} opacity-60`} />
+
+      {project.status && statusConfig[project.status] && (
+        <span className={`absolute top-3 right-3 z-20 inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-medium backdrop-blur-md ${statusConfig[project.status].className}`}>
+          {statusConfig[project.status].label}
+        </span>
+      )}
 
       <div className="flex flex-col gap-5 p-6 sm:gap-7 sm:p-7">
         <div className="relative aspect-video w-full shrink-0 overflow-hidden rounded-2xl">

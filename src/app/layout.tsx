@@ -9,6 +9,7 @@ import PageTransition from "@/components/PageTransition";
 import SmoothScrollProvider from "@/providers/SmoothScrollProvider";
 import BackToTop from "@/components/BackToTop";
 import CustomCursor from "@/components/CustomCursor";
+import MilkyGalaxyBackground from "@/components/three/MilkyGalaxyBackground";
 
 const inter = Inter({
   variable: "--font-geist-sans",
@@ -82,6 +83,7 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <body className="bg-transparent font-sans text-foreground transition-colors duration-300">
+        <MilkyGalaxyBackground />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{

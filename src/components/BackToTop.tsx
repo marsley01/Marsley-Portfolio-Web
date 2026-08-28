@@ -1,24 +1,21 @@
 "use client";
 
-import { motion, useScroll, useMotionValueEvent } from "framer-motion";
-import { useState } from "react";
-import { useLenis } from "@/providers/SmoothScrollProvider";
+import { motion } from "framer-motion";
+import { useState, useEffect } from "react";
 
 export default function BackToTop() {
-  const lenis = useLenis();
-  const { scrollY } = useScroll();
   const [visible, setVisible] = useState(false);
 
-  useMotionValueEvent(scrollY, "change", (latest) => {
-    setVisible(latest > 400);
-  });
+  useEffect(() => {
+    const onScroll = () => {
+      setVisible(window.scrollY > 400);
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   const scrollToTop = () => {
-    if (lenis) {
-      lenis.scrollTo(0, { duration: 1 });
-    } else {
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    }
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   if (!visible) return null;
